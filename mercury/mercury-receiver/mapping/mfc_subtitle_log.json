@@ -1,0 +1,58 @@
+[
+  {
+    "name": "id",
+    "type": "keyword"
+  },
+  {
+    "name": "ttid",
+    "type": "keyword"
+  },
+  {
+    "name": "season",
+    "type": "keyword"
+  },
+  {
+    "name": "episode",
+    "type": "keyword"
+  },
+  {
+    "name": "extra",
+    "type": "keyword"
+  },
+  {
+    "name": "language",
+    "type": "keyword"
+  },
+  {
+    "name": "type",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "appVer",
+    "type": "keyword"
+  },
+  {
+    "name": "appType",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "_preset_custom_ip",
+    "type": "keyword"
+  }
+]

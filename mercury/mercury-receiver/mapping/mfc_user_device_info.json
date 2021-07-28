@@ -1,0 +1,54 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "actionType",
+    "type": "keyword"
+  },
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "checksum",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "deviceType",
+    "type": "keyword"
+  },
+  {
+    "name": "macDetail",
+    "type": "keyword"
+  },
+  {
+    "name": "appver",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorId",
+    "type": "keyword"
+  },
+  {
+    "name": "customIp",
+    "type": "keyword"
+  }
+]

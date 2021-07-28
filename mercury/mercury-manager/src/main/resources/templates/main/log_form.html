@@ -1,0 +1,44 @@
+<form id="log-form" lay-filter="log-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">level</label>
+        <div class="layui-input-block">
+            <input name="level" placeholder="level" type="text" class="layui-input" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">detail</label>
+        <div class="layui-input-block">
+            <textarea name="detail" placeholder="detail" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">source</label>
+        <div class="layui-input-block">
+            <input name="source" placeholder="source" type="text" class="layui-input" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">targetObject</label>
+        <div class="layui-input-block">
+            <input name="targetObject" placeholder="targetObject"  type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">close</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var log = admin.getTempData('t_log');
+        if (log) {
+            form.val('log-form', log);
+        }
+    });
+
+</script>

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "login_time",
+    "type": "date"
+  },
+  {
+    "name": "expire_time",
+    "type": "date"
+  },
+  {
+    "name": "client_session",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "imei",
+    "type": "keyword"
+  },
+  {
+    "name": "android_id",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_serial",
+    "type": "keyword"
+  }
+]

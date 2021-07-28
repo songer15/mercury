@@ -1,0 +1,134 @@
+[
+  {
+    "name": "iid",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "create_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "last_modify_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "amount",
+    "type": "double"
+  },
+  {
+    "name": "currency",
+    "type": "keyword"
+  },
+  {
+    "name": "invoice_date",
+    "type": "long"
+  },
+  {
+    "name": "last_payment_amount",
+    "type": "double"
+  },
+  {
+    "name": "last_payment_code",
+    "type": "keyword"
+  },
+  {
+    "name": "last_payment_currency",
+    "type": "keyword"
+  },
+  {
+    "name": "last_payment_date",
+    "type": "long"
+  },
+  {
+    "name": "last_payment_gatway",
+    "type": "keyword"
+  },
+  {
+    "name": "last_payment_id",
+    "type": "long"
+  },
+  {
+    "name": "last_payment_message",
+    "type": "keyword"
+  },
+  {
+    "name": "last_payment_status",
+    "type": "integer"
+  },
+  {
+    "name": "pid",
+    "type": "long"
+  },
+  {
+    "name": "product_name",
+    "type": "keyword"
+  },
+  {
+    "name": "service_days",
+    "type": "integer"
+  },
+  {
+    "name": "sid",
+    "type": "long"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "payment_source",
+    "type": "keyword"
+  },
+  {
+    "name": "generate_type",
+    "type": "keyword"
+  },
+  {
+    "name": "cid",
+    "type": "long"
+  },
+  {
+    "name": "action",
+    "type": "integer"
+  },
+  {
+    "name": "discount",
+    "type": "double"
+  },
+  {
+    "name": "device_limit",
+    "type": "integer"
+  },
+  {
+    "name":"pre_product",
+    "type":"integer"
+  },
+  {
+    "name":"compare",
+    "type":"integer"
+  },
+  {
+    "name":"upgrade",
+    "type":"integer"
+  }
+]

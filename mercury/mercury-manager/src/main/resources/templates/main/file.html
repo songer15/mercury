@@ -1,0 +1,212 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">File</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">homepage</a>
+          <a><cite>File</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="file-search-name" class="layui-input search-input" type="text" placeholder="name"/>
+            <button id="file-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search</button>
+            <button id="file-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all</button>
+            <button id="uploadFlinkFile" class="layui-btn icon-btn"><i class="layui-icon"></i>add flink file</button>
+            <button id="uploadScriptFile" class="layui-btn icon-btn"><i class="layui-icon"></i>add groovy fle</button>
+        </div>
+        <table id="file-table" lay-filter="file-table"></table>
+    </div>
+</div>
+<script type="text/html" id="sizeTemplate">
+    {{#  var fn = function(size){
+        var value=(size/1024/1024).toFixed(2);
+        return value+'MB';
+    };  }}
+    {{fn(d.fileSize)}}
+</script>
+<script type="text/html" id="file-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="sync">sync</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+<script>
+    layui.use(['table', 'admin', 'util','form', 'layer', 'upload'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var upload = layui.upload;
+        var util = layui.util;
+
+        //第一个实例
+        table.render({
+            elem: '#file-table',
+            url: 'config/file/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                {
+                    field: 'id',
+                    title: 'ID',
+                    width: 80,
+                    sort: true
+                },{
+                    field: 'fileName',
+                    title: 'fileName',
+                    sort: true
+                },{
+                    field: 'targetType',
+                    title: 'targetType',
+                    width: 150,
+                    sort: true
+                }, {
+                    field: 'fileSize',
+                    title: 'fileSize',
+                    templet: '#sizeTemplate',
+                    width: 120,
+                    sort: true
+                }, {
+                    field: 'requestTimes',
+                    title: 'requestTimes',
+                    width: 120,
+                    sort: true
+                }, {
+                    field: 'uploadSource',
+                    title: 'uploadSource',
+                    width: 200,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    width: 180,
+                    title: 'createTime'
+                },{
+                    align: 'center',
+                    toolbar: '#file-table-bar',
+                    width: 180,
+                    title: 'operation'
+                }
+                ]
+            ]
+        });
+
+        // 工具条点击事件
+        table.on('tool(file-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'sync') { // 修改
+                layer.confirm('are you sure to sync this file？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('config/file/sync', {
+                        fileId: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            } else {
+                layer.confirm('are you sure to delete this file？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('config/file/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+       upload.render({
+            elem: '#uploadFlinkFile' //绑定元素
+            , url: 'config/file/upload' //上传接口
+            , accept: 'file'
+            , field: 'file'
+            , data: {targetType:'Flink'}
+            , before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                layer.load(); //上传loading
+            }
+            , done: function (res) {
+                layer.closeAll('loading');
+                //上传完毕回调
+                if (res.upload = 0) {
+                    layer.msg(res.msg, {icon: 2});
+                } else {
+                    admin.refresh();
+                }
+            }
+            , error: function () {
+                //请求异常回调
+                layer.closeAll('loading');
+            }
+        });
+
+        upload.render({
+            elem: '#uploadScriptFile' //绑定元素
+            , url: 'config/file/upload' //上传接口
+            , accept: 'file'
+            , field: 'file'
+            , data: {targetType:'Script'}
+            , before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                layer.load(); //上传loading
+            }
+            , done: function (res) {
+                layer.closeAll('loading');
+                //上传完毕回调
+                if (res.upload = 0) {
+                    layer.msg(res.msg, {icon: 2});
+                } else {
+                    admin.refresh();
+                }
+            }
+            , error: function () {
+                //请求异常回调
+                layer.closeAll('loading');
+            }
+        });
+
+        // 搜索按钮点击事件
+        $('#file-btn-search').click(function () {
+            var name = $('#file-search-name').val();
+            table.reload('file-table', {
+                url: 'config/file/queryList',
+                where: {
+                    name: name
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#file-btn-show').click(function () {
+            table.reload('file-table', {
+                url: 'config/file/list'
+            });
+        });
+    });
+
+</script>

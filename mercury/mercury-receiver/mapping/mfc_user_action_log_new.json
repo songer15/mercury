@@ -1,0 +1,82 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "actionType",
+    "type": "keyword"
+  },
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "clientRegion",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "actionStatus",
+    "type": "keyword"
+  },
+  {
+    "name": "actionDetail",
+    "type": "keyword"
+  },
+  {
+    "name": "appver",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorId",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "customIp",
+    "type": "keyword"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  },
+  {
+    "name": "device",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "plan",
+    "type": "keyword"
+  },
+  {
+    "name": "bizDate",
+    "type": "date"
+  },
+  {
+    "name": "clientType",
+    "type": "keyword"
+  }
+]

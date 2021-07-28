@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Elasticsearch Basic Query</title>
+</head>
+
+<body>
+<div class="layui-form layui-form-pane">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 150px">Index</label>
+            <div class="layui-input-inline">
+                <input id="elasticsearch-query-index" type="text" class="layui-input" ts-selected>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button id="elasticsearch-query-btn" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>Start
+                Query
+            </button>
+        </div>
+        <div class="layui-inline">
+            <div id ="queryHits" class="layui-form-mid layui-word-aux"></div>
+        </div>
+    </div>
+</div>
+<div id="complex-query" class="layui-card layui-card-body">
+    <div id="msg"></div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="elasticsearchQuery-table" lay-filter="elasticsearchQuery-table"></table>
+    </div>
+</div>
+<ul id="elasticsearchDC" style="display:none;">
+</ul>
+
+<script type="text/javascript">
+    var dynamicCondition;
+    layui.use(['table', 'form', 'dynamicCondition', 'tableSelect','util','code','admin'], function () {
+        var table = layui.table,
+            form = layui.form,
+            tableSelect = layui.tableSelect,
+            admin = layui.admin,
+            util = layui.util;
+        dynamicCondition = layui.dynamicCondition;
+
+        tableSelect.render({
+            elem: '#elasticsearch-query-index',
+            searchKey: "index",
+            searchPlaceholder: "Search by Index",
+            checkedKey: "index",
+            table: {
+                url: "elasticsearch/searchIndexs",
+                cols: [[
+                    {type: 'radio'},
+                    {field: 'index', title: 'Index', sorted: true},
+                    {
+                        field: 'indexTotal', templet: function (d) {
+                            var docs = d.indexTotal.indexDocs.count;
+                            return docs;
+                        }, title: 'Docs', sorted: true
+                    },
+                    {
+                        field: 'indexTotal', templet: function (d) {
+                            var byte = d.indexTotal.indexStore.sizeInBytes;
+                            var kb = byte / 1024;
+                            if (kb < 1)
+                                return byte + " B";
+                            var mb = kb / 2014;
+                            if (mb < 1)
+                                return kb.toFixed(2) + " KB";
+                            var gb = mb / 1024;
+                            if (gb < 1)
+                                return mb.toFixed(2) + " MB";
+                            return gb.toFixed(2) + " GB";
+                        }, title: 'Size'
+                    }
+                ]]
+            },
+            done: function (elem, data) {
+                var NEWJSON = [];
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.index)
+                });
+                elem.val(NEWJSON.join(","));
+            }
+        });
+
+        $('#elasticsearch-query-btn').click(function () {
+            var index = $('#elasticsearch-query-index').val();
+            if (!index) {
+                layer.msg("Index must be selected!");
+                return;
+            }
+
+            $.ajax({
+                url: 'elasticsearch/searchIndexMapping',
+                type: 'post',
+                data: {index: index},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.code == 200) {
+                        if (null == data.data && data.data.trim() == "")
+                            layer.msg("No data found");
+                        else {
+
+                            showDynamicConditionView(data.data);
+                        }
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        });
+
+        function showDynamicConditionView(data) {
+            var hasLocalCreateTime=false;
+            $.each(data, function (key) {
+                var dom;
+                if (data[key] == "date") {
+                    if (key == "LocalCreateTime")
+                        hasLocalCreateTime = true;
+                    dom = '<li field="' + key + '" title="' + key + '" edit="date" ops="equal,between"></li>'
+
+                } else if (data[key] == "long"){
+                    dom = '<li field="' + key + '" title="' + key + '" edit="text" ops="equal,between,unequal"></li>'
+                }else {
+                    dom = '<li field="' + key + '" title="' + key + '" edit="text"></li>'
+                }
+                $("#elasticsearchDC").append(dom);
+            });
+            var dc = dynamicCondition.create({
+                elem: "#elasticsearchDC" //通过容器选择器传入，也可以$("#dcDemo"),或者document.getElementById("dcDemo")
+              //  , tableId: "elasticsearchQuery-table" //静态页面不好演示table数据表格更新
+                , type: "complex"  //type:"simple"/"complex"
+                , counts:1
+                , conditionTextId: "#msg"
+                , requestDataType: 'json'
+                //当有多个动态条件查询实例时，定义instanceName属性可以通过dynamicCondition.getInstance(instanceName)获取对应的实例
+                , instanceName: "complexInstance"
+                , unpopupBtnswidth: 410
+                , unpopupShowAddBtn: true
+                , queryCallBack: function (requestData) {
+                    var index = $('#elasticsearch-query-index').val();
+                    $.ajax({
+                        url: 'elasticsearch/basicQuery',
+                        type: 'post',
+                        data: {index: index,requestJsonStr:requestData.jsonStr},
+                        dataType: 'json',
+                        async: false,
+                        success: function (data) {
+                            if (data.code == 200) {
+                                if (null == data.data || data.data == "")
+                                    layer.msg("No data found");
+                                else {
+                                    $('#queryHits').html("Total Hits:"+data.data.total)
+                                    showElasticsearchData(data.data);
+                                }
+                            } else {
+                                layer.msg(data.msg);
+                            }
+                        }
+                    });
+                }
+            });
+            dc.setDisplayModel("unpopup");
+
+            if (hasLocalCreateTime){
+                var today = new Date().getTime();
+                dc.setCondition([
+                    ["LocalCreateTime","between",util.toDateString(today-168*60*60*1000, 'yyyy-MM-dd'),util.toDateString(today, 'yyyy-MM-dd')]
+                ]);
+            }
+        }
+
+        function showElasticsearchData(data) {
+            var columns = new Array();
+            for (var i in data.columns) {
+                var column = data.columns[i];
+                if (column == "LocalCreateTime")
+                    columns.push({
+                        field: column, title: column,templet: function (d) {
+                            if (d.LocalCreateTime == -1)
+                                return "";
+                            else
+                                return util.toDateString(d.LocalCreateTime);
+                        }
+                    });
+                else
+                    columns.push({
+                        field: column, title: column
+                    })
+            }
+
+            table.render({
+                elem: '#elasticsearchQuery-table',
+                cellMinWidth:150,
+                cols: [columns],
+                data: data.datas,
+                limit: data.total
+            });
+        }
+
+        table.on('rowDouble(elasticsearchQuery-table)', function(obj){
+            var rowData= obj.data;
+            admin.putTempData('elasticsearchDataDetail',rowData);
+            admin.popupCenter({
+                title: "",
+                area:['720px','480px'],
+                path: 'elasticsearchDataDetail',
+                scrollbar:true,
+                finish: function () {
+                }
+            });
+        });
+
+    })
+    ;
+
+</script>
+</body>
+</html>

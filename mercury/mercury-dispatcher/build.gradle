@@ -1,0 +1,56 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.valor'
+version '0.4.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.valor.mercury.dispatcher.DispatcherApplication'
+    }
+}
+dependencies {
+    compile project(":mercury-common")
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation project(":mercury-sender")
+    implementation ('org.springframework.boot:spring-boot-starter')
+    implementation 'com.google.guava:guava:21.0'
+
+
+    //Elasticsearch
+    // 在mercury-common 中打包的版本是5.6.8，所以这里重新声明一下依赖6.3.1, 模块运行需要6.3.1 的 elasticsearch在类路径下
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.3.1'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '6.3.1'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch-x-content', version: '6.3.1'
+
+    implementation group: 'com.maxmind.geoip2', name: 'geoip2', version: '2.12.0'
+
+
+}
+
+configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    compile.exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+}
+

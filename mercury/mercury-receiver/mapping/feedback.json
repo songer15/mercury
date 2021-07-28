@@ -1,0 +1,82 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "aid",
+    "type": "keyword"
+  },
+  {
+    "name": "issueId",
+    "type": "keyword"
+  },
+  {
+    "name": "hostId",
+    "type": "keyword"
+  },
+  {
+    "name": "logFilePath",
+    "type": "keyword"
+  },
+  {
+    "name": "issueState",
+    "type": "integer"
+  },
+  {
+    "name": "reportInfo",
+    "type": "keyword"
+  },
+  {
+    "name": "reportTime",
+    "type": "keyword"
+  },
+  {
+    "name": "channelId",
+    "type": "keyword"
+  },
+  {
+    "name": "appVersion",
+    "type": "long"
+  },
+  {
+    "name": "system",
+    "type": "keyword"
+  },
+  {
+    "name": "lang",
+    "type": "keyword"
+  },
+  {
+    "name": "region",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "deviceId",
+    "type": "keyword"
+  },
+  {
+    "name": "createTime",
+    "type": "date"
+  },
+  {
+    "name": "lastModifyTime",
+    "type": "date"
+  },
+  {
+    "name": "lastModifyUser",
+    "type": "keyword"
+  }
+]

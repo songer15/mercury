@@ -1,0 +1,118 @@
+[
+  {
+    "name": "androidId",
+    "type": "keyword"
+  },
+  {
+    "name": "androidVersion",
+    "type": "keyword"
+  },
+  {
+    "name": "bluetoothMac",
+    "type": "keyword"
+  },
+  {
+    "name": "bootloader",
+    "type": "keyword"
+  },
+  {
+    "name": "buildDateUtc",
+    "type": "long"
+  },
+  {
+    "name": "buildDisplay",
+    "type": "keyword"
+  },
+  {
+    "name": "buildFingerprint",
+    "type": "keyword"
+  },
+  {
+    "name": "buildHost",
+    "type": "keyword"
+  },
+  {
+    "name": "buildId",
+    "type": "keyword"
+  },
+  {
+    "name": "buildTags",
+    "type": "keyword"
+  },
+  {
+    "name": "buildType",
+    "type": "keyword"
+  },
+  {
+    "name": "buildUser",
+    "type": "keyword"
+  },
+  {
+    "name": "cpuHardware",
+    "type": "keyword"
+  },
+  {
+    "name": "cpuSerial",
+    "type": "keyword"
+  },
+  {
+    "name": "cpuinfo",
+    "type": "keyword"
+  },
+  {
+    "name": "ethernetMac",
+    "type": "keyword"
+  },
+  {
+    "name": "hardware",
+    "type": "keyword"
+  },
+  {
+    "name": "imei",
+    "type": "keyword"
+  },
+  {
+    "name": "productBoard",
+    "type": "keyword"
+  },
+  {
+    "name": "productBrand",
+    "type": "keyword"
+  },
+  {
+    "name": "productDevice",
+    "type": "keyword"
+  },
+  {
+    "name": "productManufacturer",
+    "type": "keyword"
+  },
+  {
+    "name": "productModel",
+    "type": "keyword"
+  },
+  {
+    "name": "ramSize",
+    "type": "long"
+  },
+  {
+    "name": "romSize",
+    "type": "long"
+  },
+  {
+    "name": "sdk",
+    "type": "keyword"
+  },
+  {
+    "name": "wifiMac",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_ip",
+    "type": "keyword"
+  }
+]

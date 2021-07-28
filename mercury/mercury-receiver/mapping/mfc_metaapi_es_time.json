@@ -1,0 +1,26 @@
+[
+  {
+    "name": "count",
+    "type": "long"
+  },
+  {
+    "name": "m_app_id",
+    "type": "keyword"
+  },
+  {
+    "name": "m_client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "type",
+    "type": "keyword"
+  },
+  {
+    "name": "mint",
+    "type": "integer"
+  },
+  {
+    "name": "ip",
+    "type": "keyword"
+  }
+]

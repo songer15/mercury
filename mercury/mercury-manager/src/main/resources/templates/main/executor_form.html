@@ -1,0 +1,84 @@
+<form id="taskExecutor-form" lay-filter="taskExecutor-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">clientName</label>
+        <div class="layui-input-block">
+            <input name="clientName" placeholder="name" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">description</label>
+        <div class="layui-input-block">
+            <textarea name="description" placeholder="description" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">clientPsd</label>
+        <div class="layui-input-block">
+            <input name="clientPsd" placeholder="password" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">clientIP</label>
+        <div class="layui-input-block">
+            <input name="clientIP" placeholder="clientIP"  type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">enable</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" name="enable" lay-skin="switch" lay-filter="enable"
+                   lay-text="true|false">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">executorType</label>
+        <div class="layui-input-block">
+            <select name="executorType" xm-select="executorType" xm-select-radio="executorType" lay-verify="required">
+                <option value="SPIDER">spider</option>
+                <option value="HIVE">hive</option>
+                <option value="SCRIPT">script</option>
+                <option value="FLINK">flink</option>
+                <option value="RECEIVER">receiver</option>
+                <option value="DISPATCHER">dispatcher</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="taskExecutor-form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'executor/add';
+        var taskExecutor = admin.getTempData('t_executor');
+        if (taskExecutor) {
+            url = 'executor/edit';
+            form.val('taskExecutor-form', taskExecutor);
+        }
+        form.render();
+
+        // 表单提交事件
+        form.on('submit(taskExecutor-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+
+</script>

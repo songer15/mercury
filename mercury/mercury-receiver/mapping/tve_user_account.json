@@ -1,0 +1,102 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "activated_ts",
+    "type": "date"
+  },
+  {
+    "name": "bn",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "duid",
+    "type": "keyword"
+  },
+  {
+    "name": "echo_str",
+    "type": "keyword"
+  },
+  {
+    "name": "expire_ts",
+    "type": "date"
+  },
+  {
+    "name": "user_group",
+    "type": "keyword"
+  },
+  {
+    "name": "login_id",
+    "type": "keyword"
+  },
+  {
+    "name": "login_key",
+    "type": "keyword"
+  },
+  {
+    "name": "permission",
+    "type": "keyword"
+  },
+  {
+    "name": "properties",
+    "type": "long"
+  },
+  {
+    "name": "reason",
+    "type": "keyword"
+  },
+  {
+    "name": "reg_ts",
+    "type": "date"
+  },
+  {
+    "name": "remark",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "trial",
+    "type": "integer"
+  },
+  {
+    "name": "vendor",
+    "type": "keyword"
+  },
+  {
+    "name": "vendor_channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "vendor_id",
+    "type": "long"
+  },
+  {
+    "name": "loginmethod",
+    "type": "integer"
+  },
+  {
+    "name": "register_release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "user_vendor",
+    "type": "long"
+  }
+]

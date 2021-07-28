@@ -1,0 +1,128 @@
+[
+  {
+    "name": "prepare_dur_ms",
+    "type": "integer"
+  },
+  {
+    "name": "play_dur",
+    "type": "integer"
+  },
+  {
+    "name": "buf_count",
+    "type": "integer"
+  },
+  {
+    "name": "std_buf_count",
+    "type": "integer"
+  },
+  {
+    "name": "buf_total_dur",
+    "type": "integer"
+  },
+  {
+    "name": "err_count",
+    "type": "integer"
+  },
+  {
+    "name": "online",
+    "type": "integer"
+  },
+  {
+    "name": "v_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "start_dur_ms",
+    "type": "long"
+  },
+  {
+    "name": "play_dur_b41stb_ms",
+    "type": "long"
+  },
+  {
+    "name": "ver",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "server_id",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "keyword"
+  },
+  {
+    "name": "is_play_success",
+    "type": "boolean"
+  },
+  {
+    "name": "stream_type",
+    "type": "keyword"
+  },
+  {
+    "name": "bw_avg",
+    "type": "keyword"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "stream_source",
+    "type": "keyword"
+  },
+  {
+    "name": "protocol",
+    "type": "keyword"
+  },
+  {
+    "name": "Location",
+    "type": "geo_point"
+  },
+  {
+    "name": "CityName",
+    "type": "text",
+    "index": true,
+    "analyzer": "whitespace"
+  },
+  {
+    "name": "StateCode",
+    "type": "keyword"
+  },
+  {
+    "name": "CountryCode",
+    "type": "keyword"
+  },
+  {
+    "name": "AutonomousSystemNumber",
+    "type": "long"
+  },
+  {
+    "name": "AutonomousSystemOrganization",
+    "type": "keyword"
+  },
+  {
+    "name": "GeoHash",
+    "type": "keyword"
+  },
+  {
+    "name":"pre_id",
+    "type":"keyword"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "name": "id",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "name",
+    "type": "keyword"
+  },
+  {
+    "name": "category_id",
+    "type": "keyword"
+  },
+  {
+    "name": "channel_num",
+    "type": "integer"
+  },
+  {
+    "name": "order_seq",
+    "type": "integer"
+  },
+  {
+    "name": "resolution",
+    "type": "integer"
+  },
+  {
+    "name": "icon_url",
+    "type": "keyword"
+  },
+  {
+    "name": "stream_url",
+    "type": "keyword"
+  },
+  {
+    "name": "groups",
+    "type": "keyword"
+  },
+  {
+    "name": "note",
+    "type": "keyword"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "adult",
+    "type": "integer"
+  },
+  {
+    "name": "admin_text",
+    "type": "keyword"
+  },
+  {
+    "name": "properties",
+    "type": "keyword"
+  },
+  {
+    "name": "allow_mobile",
+    "type": "integer"
+  },
+  {
+    "name": "display_mode",
+    "type": "long"
+  }
+]

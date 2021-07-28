@@ -1,0 +1,80 @@
+flink账号密码：b7ddf3497-01df-4788-b21b-11reewrbe758
+ps -Lf 15134 | wc -l ²é¿´Ïß³ÌÊý
+mfc uat 账号密码：brvv@uat01 brvv@uat02 brvv@uat03
+中转机账号密码：valoropt/valor@1899
+mm账号密码eova valor@admin
+NAS地址: \\192.168.199.110
+NAS账号密码gavin.hu/MzD
+private\gavin.hu
+KevinChen
+CEXh3MSxOyFd4zOp
+182.61.104.217
+scp valoropt@119.9.77.190:/home/valoropt/Gavin/mercury-manager-1.0-SNAPSHOT.jar ./
+scp valoropt@119.9.77.190:/home/valoropt/Gavin/commons-httpclient-3.1.jar ./
+scp valoropt@119.9.77.190:/home/valoropt/Gavin/elasticsearch-hadoop-6.3.1.jar ./
+
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh && chmod +x ssr.sh && bash ssr.sh
+
+
+
+#business  database  settings
+old 
+metric.database.mfc.url=jdbc:mysql://rm-rj9xeu56m8tp4hg4u.mysql.rds.aliyuncs.com:3306/mfc_vms_user_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc.username=eslog_ro
+metric.database.mfc.password=fF5xsVnSjEhbI
+
+metric.database.feedback.url=jdbc:mysql://rm-rj9xeu56m8tp4hg4u.mysql.rds.aliyuncs.com:3306/mfc-feedback-db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.feedback.username=eslog_ro
+metric.database.feedback.password=fF5xsVnSjEhbI
+
+metric.database.bill.url=jdbc:mysql://rm-rj9xeu56m8tp4hg4u.mysql.rds.aliyuncs.com:3306/mfc_bill_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.bill.username=eslog_ro
+metric.database.bill.password=fF5xsVnSjEhbI
+
+metric.database.mfc_user_db.url=jdbc:mysql://rm-rj9xeu56m8tp4hg4u.mysql.rds.aliyuncs.com:3306/mfc_user_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc_user_db.username=eslog_ro
+metric.database.mfc_user_db.password=fF5xsVnSjEhbI
+
+metric.database.vms_db.url=jdbc:mysql://rm-rj9j2mb3pmz4xq79w.mysql.rds.aliyuncs.com:3306/valor_vms_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.vms_db.username=eslog_ro
+metric.database.vms_db.password=fF5xsVnSjEhbI
+
+metric.database.mfc_charge_db.url=jdbc:mysql://rm-rj9xeu56m8tp4hg4u.mysql.rds.aliyuncs.com:3306/mfc_charge_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc_charge_db.username=eslog_ro
+metric.database.mfc_charge_db.password=fF5xsVnSjEhbI
+
+metric.database.crm_db.url=jdbc:mysql://rm-rj9j2mb3pmz4xq79w.mysql.rds.aliyuncs.com:3306/crm_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.crm_db.username=eslog_ro
+metric.database.crm_db.password=fF5xsVnSjEhbI
+
+
+new 
+metric.database.mfc.url=jdbc:mysql://mfc-user-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/mfc_vms_user_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc.username=eslog_ro
+metric.database.mfc.password=fF5xsVnSjEhbI
+
+metric.database.feedback.url=jdbc:mysql://mfc-user-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/mfc_feedback_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true                                                  
+metric.database.feedback.username=eslog_ro
+metric.database.feedback.password=fF5xsVnSjEhbI
+
+metric.database.bill.url=jdbc:mysql://mfc-user-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/mfc_bill_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.bill.username=eslog_ro
+metric.database.bill.password=fF5xsVnSjEhbI
+
+
+metric.database.mfc_user_db.url=jdbc:mysql://mfc-user-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/mfc_user_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc_user_db.username=eslog_ro
+metric.database.mfc_user_db.password=fF5xsVnSjEhbI
+
+
+metric.database.vms_db.url=jdbc:mysql://mfc-meta-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/valor_vms_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.vms_db.username=eslog_ro
+metric.database.vms_db.password=fF5xsVnSjEhbI
+
+metric.database.mfc_charge_db.url=jdbc:mysql://mfc-user-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/mfc_charge_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.mfc_charge_db.username=eslog_ro
+metric.database.mfc_charge_db.password=fF5xsVnSjEhbI
+
+metric.database.crm_db.url=jdbc:mysql://mfc-meta-db-mysql.cvwvmpuvqqb7.us-east-2.rds.amazonaws.com:3306/crm_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true
+metric.database.crm_db.username=eslog_ro
+metric.database.crm_db.password=fF5xsVnSjEhbI

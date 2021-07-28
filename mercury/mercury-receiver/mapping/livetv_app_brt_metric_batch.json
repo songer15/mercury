@@ -1,0 +1,14 @@
+[
+  {
+    "name": "m_app_id",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "metric_info",
+    "type": "keyword"
+  }
+]

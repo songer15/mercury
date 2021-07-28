@@ -1,0 +1,50 @@
+[
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "device",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "appVersion",
+    "type": "keyword"
+  },
+  {
+    "name": "releaseId",
+    "type": "keyword"
+  },
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "userStatus",
+    "type": "keyword"
+  },
+  {
+    "name": "channelID",
+    "type": "keyword"
+  },
+  {
+    "name": "functionName",
+    "type": "keyword"
+  }
+]

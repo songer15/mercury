@@ -1,0 +1,375 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Hive</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">home page</a>
+          <a><cite>Hive</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="hive-offLineMetaTask-search-id" class="layui-input search-input" type="text" placeholder="ID"/>
+            <input id="hive-offLineMetaTask-search-name" class="layui-input search-input" type="text"
+                   placeholder="name"/>
+            <!--<input id="hive-offLineMetaTask-search-taskExecutor" class="layui-input search-input" type="text"-->
+                   <!--placeholder="taskExecutor"/>-->
+            <select id="hive-offLineMetaTask-search-taskExecutor">
+                <option value="" selected>Executor</option>
+                <% for(executor in executors) { %>
+                <option value="${executor}">${executor}</option>
+                <% } %>
+            </select>
+            <input id="hive-offLineMetaTask-search-config" class="layui-input search-input" type="text"
+                   placeholder="config"/>
+            <button id="hive-offLineMetaTask-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>search
+            </button>
+            <button id="hive-offLineMetaTask-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all
+            </button>
+            <button id="hive-offLineMetaTask-btn-add" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>add
+            </button>
+        </div>
+        <table id="hive-offLineMetaTask-table" lay-filter="hive-offLineMetaTask-table"></table>
+    </div>
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Hive Task Instances</h2>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="hive-offLineMetaTaskInstance-search-id" class="layui-input search-input" type="text"
+                   placeholder="ID"/>
+            <input id="hive-offLineMetaTaskInstance-search-name" class="layui-input search-input" type="text"
+                   placeholder="name"/>
+            <!--<input id="hive-offLineMetaTaskInstance-search-taskExecutor" class="layui-input search-input" type="text"-->
+                   <!--placeholder="taskExecutor"/>-->
+            <!--<input id="hive-offLineMetaTaskInstance-search-status" class="layui-input search-input" type="text"-->
+                   <!--placeholder="status"/>-->
+            <!--<input id="hive-offLineMetaTaskInstance-search-result" class="layui-input search-input" type="text"-->
+                   <!--placeholder="result"/>-->
+            <select id="hive-offLineMetaTaskInstance-search-taskExecutor">
+                <option value="" selected>Executor</option>
+                <% for(executor in executors) { %>
+                <option value="${executor}">${executor}</option>
+                <% } %>
+            </select>
+            <select id="hive-offLineMetaTaskInstance-search-status">
+                <option value="" selected>Status</option>
+                <option value="FINISH">FINISH</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="READY">READY</option>
+                <option value="CANCELLING">CANCELLING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="WAITING">WAITING</option>
+            </select>
+            <select id="hive-offLineMetaTaskInstance-search-result">
+                <option value="" selected>Result</option>
+                <option value="Time Out">Time Out</option>
+                <option value="Cancel&Time Out">Cancel&Time Out</option>
+                <option value="INIT">INIT</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="FAIL">FAIL</option>
+                <option value="LINING">LINING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="SUCCESS">SUCCESS</option>
+            </select>
+            <input id="hive-offLineMetaTaskInstance-search-batch" class="layui-input search-input" type="text"
+                   placeholder="batch"/>
+            <button id="hive-offLineMetaTaskInstance-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search
+            </button>
+            <button id="hive-offLineMetaTaskInstance-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show
+                all
+            </button>
+        </div>
+        <table id="hive-offLineMetaTaskInstance-table" lay-filter="hive-offLineMetaTaskInstance-table"></table>
+    </div>
+</div>
+
+<script type="text/html" id="hive-offLineMetaTask-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">edit</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+<script type="text/html" id="hive-offLineMetaTaskInstance-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="InstanceDetail">detail</a>
+</script>
+<script>
+    layui.use(['table', 'admin', 'util', 'form', 'layer'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var util = layui.util;
+        form.render("select");
+
+        //第一个实例
+        table.render({
+            elem: '#hive-offLineMetaTask-table',
+            url: 'offLineMetaTask/hive/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width:60,
+                        fixed: 'left'
+                    }, {
+                    field: 'name',
+                    title: 'name',
+                    width:250,
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    width:160,
+                    title: 'createTime'
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.lastModifyTime);
+                    },
+                    title: 'lastModifyTime',
+                    width:160,
+                    sort: true
+                },{
+                    field: 'inc',
+                    title: 'inc',
+                    sort: true
+                },{
+                    field: 'executor',
+                    title: 'executor',
+                    width:150,
+                    sort: true
+                },{
+                    field: 'desc',
+                    title: 'desc',
+                    width:200,
+                    sort: true
+                },{
+                    field: 'config',
+                    title: 'config',
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#hive-offLineMetaTask-table-bar',
+                    title: 'operation',
+                    width: 180
+                }
+                ]
+            ]
+        });
+
+        table.render({
+            elem: '#hive-offLineMetaTaskInstance-table',
+            url: 'offLineMetaTask/hive/listInstance' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width:100,
+                        fixed: 'left'
+                    }, {
+                    field: 'name',
+                    title: 'name',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.executeTime);
+                    },
+                    title: 'executeTime',
+                    width:160,
+                    sort: true
+                }, {
+                    field: 'status',
+                    title: 'status',
+                    width:120,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.startTime);
+                    },
+                    title: 'startTime',
+                    width:160,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.endTime);
+                    },
+                    title: 'endTime',
+                    width:160,
+                    sort: true
+                },{
+                    field: 'result',
+                    title: 'result',
+                    width:100,
+                    sort: true
+                },{
+                    field: 'runningBatch',
+                    title: 'batch',
+                    width:100,
+                    sort: true
+                },{
+                    field: 'primaryValue',
+                    title: 'inc',
+                    width:120,
+                    sort: true
+                }, {
+                    field: 'executor',
+                    title: 'executor',
+                    width:150,
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#hive-offLineMetaTaskInstance-table-bar',
+                    title: 'detail',
+                    fixed: 'right',
+                    width: 100
+                }
+                ]
+            ]
+        });
+
+        table.on('tool(hive-offLineMetaTaskInstance-table)', function (obj) {
+            var data = obj.data;
+            layer.open({
+                title: data.name
+                ,content: '<b>metrics:</b> '+data.metrics
+                +'<h3><b>errorMsg:</b> '+data.errorMsg
+                +'<h3><b>lastActionTime:</b> '+data.lastActionTime
+                +'<h3><b>desc:</b> '+data.desc
+                +'<h3><b>lastModifyTime:</b> '+data.lastModifyTime
+                +'<h3><b>createTime:</b> '+data.createTime
+                +'<h3><b>taskInstanceId:</b> '+data.taskInstanceId
+            });
+        });
+
+        // 工具条点击事件
+        table.on('tool(hive-offLineMetaTask-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            } else if (layEvent === 'delete') { // 删除
+                layer.confirm('are you sure to delete this item？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineMetaTask/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+        // 添加按钮点击事件
+        $('#hive-offLineMetaTask-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#hive-offLineMetaTask-btn-search').click(function () {
+            var id = $('#hive-offLineMetaTask-search-id').val();
+            var name = $('#hive-offLineMetaTask-search-name').val();
+            var executor = $('#hive-offLineMetaTask-search-taskExecutor option:selected').val();
+            var config = $('#hive-offLineMetaTask-search-config').val();
+            table.reload('hive-offLineMetaTask-table', {
+                url: 'offLineMetaTask/hive/queryList',
+                where: {
+                    id: id,
+                    name: name,
+                    executor: executor,
+                    config: config
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#hive-offLineMetaTask-btn-show').click(function () {
+            table.reload('hive-offLineMetaTask-table', {
+                url: 'offLineMetaTask/hive/list'
+            });
+        });
+
+
+        $('#hive-offLineMetaTaskInstance-btn-search').click(function () {
+            var id = $('#hive-offLineMetaTaskInstance-search-id').val();
+            var name = $('#hive-offLineMetaTaskInstance-search-name').val();
+            var executor = $('#hive-offLineMetaTaskInstance-search-taskExecutor option:selected').val();
+            var status = $('#hive-offLineMetaTaskInstance-search-status option:selected').val();
+            var batch = $('#hive-offLineMetaTaskInstance-search-batch').val();
+            var result = $('#hive-offLineMetaTaskInstance-search-result option:selected').val();
+            table.reload('hive-offLineMetaTaskInstance-table', {
+                url: 'offLineMetaTask/hive/queryListInstance',
+                where: {
+                    id: id,
+                    name: name,
+                    executor: executor,
+                    status: status,
+                    result: result,
+                    batch: batch
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#hive-offLineMetaTaskInstance-btn-show').click(function () {
+            table.reload('hive-offLineMetaTaskInstance-table', {
+                url: 'offLineMetaTask/hive/listInstance'
+            });
+        });
+
+
+        // 显示表单弹窗
+        var showEditModel = function (data) {
+            var title = data ? 'edit' : 'add';
+            if (data) {
+                admin.popupCenter({
+                    title: title,
+                    area: "1500px",
+                    path: 'offLineMetaTask/hive/editForm?id='+data.id,
+                    finish: function () {
+                       table.reload('hive-offLineMetaTask-table', {});
+                    }
+                });
+            } else {
+                 admin.popupCenter({
+                    title: title,
+                    area: "1500px",
+                    path: 'offLineMetaTask/hive/editForm',
+                    finish: function () {
+                        table.reload('hive-offLineMetaTask-table', {});
+                    }
+                 });
+            }
+         };
+    });
+
+
+
+
+</script>

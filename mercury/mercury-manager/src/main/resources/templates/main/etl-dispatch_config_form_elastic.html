@@ -1,0 +1,90 @@
+<form id="etl-dispatch_config_form_elastic" lay-filter="etl-dispatch_config_form_elastic" class="layui-form model-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">indexName</label>
+        <div class="layui-input-block">
+            <input name="indexName" placeholder="indexName" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">shardNum</label>
+        <div class="layui-input-block">
+            <input name="shardNum" placeholder="shardNum" value="1" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">replicaNum</label>
+        <div class="layui-input-block">
+            <input name="replicaNum" placeholder="replicaNum" value="1" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">mapping</label>
+        <div class="layui-input-block">
+            <textarea name="indexMapping" id="indexMapping" placeholder="mapping" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">idField</label>
+        <div class="layui-input-block">
+            <input name="idField" placeholder="idField" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">indexNameStrategy</label>
+        <div class="layui-input-block">
+            <select name="indexNameStrategy" lay-verify="required" required>
+                <option value="Null">Null</option>
+                <option value="Year" selected>Year</option>
+                <option value="Quarter">Quarter</option>
+                <option value="Month">Month</option>
+                <option value="Week">Week</option>
+                <option value="Day">Day</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="dispatch_config_form_elastic-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'ETLTask/dispatch/editElasticConfig';
+        var id ='${id}';
+        var data='${config}';
+        if (data!='null') {
+        console.log(data);
+            form.val('etl-dispatch_config_form_elastic', JSON.parse(data));
+        }
+
+        form.render();
+        // 表单提交事件
+        form.on('submit(dispatch_config_form_elastic-submit)', function (data) {
+            layer.load(2);
+            $.post(url, {
+                id:id,
+                indexName:data.field.indexName,
+                shardNum:data.field.shardNum,
+                replicaNum:data.field.replicaNum,
+                indexMapping:data.field.indexMapping,
+                idField:data.field.idField,
+                indexNameStrategy:data.field.indexNameStrategy
+            }, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+</script>

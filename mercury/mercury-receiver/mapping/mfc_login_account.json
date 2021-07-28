@@ -1,0 +1,62 @@
+[
+  {
+    "name": "login_type",
+    "type": "integer"
+  },
+  {
+    "name": "login_id",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "client_region",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "login_account_id",
+    "type": "long"
+  },
+  {
+    "name": "login_account_props",
+    "type": "long"
+  },
+  {
+    "name": "login_biz_expire",
+    "type": "long"
+  },
+  {
+    "name": "login_key",
+    "type": "keyword"
+  },
+  {
+    "name": "login_name",
+    "type": "keyword"
+  }
+]

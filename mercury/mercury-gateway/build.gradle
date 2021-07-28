@@ -1,0 +1,91 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.valor'
+version '0.4.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.valor.mercury.gateway.GatewayApplication'
+    }
+}
+dependencies {
+    implementation project(":mercury-common")
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files("libs/mfc-config-tools-2.0.2.jar")
+    implementation files("libs/javacsv.jar")
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+
+//    //hibernate
+//    implementation group: 'org.springframework', name: 'spring-orm', version:'5.1.2.RELEASE'
+//    implementation group: 'commons-dbcp', name: 'commons-dbcp', version:'1.4'
+//    implementation group: 'org.hibernate', name: 'hibernate-core', version:'5.1.2.Final'
+
+    //spring boot
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    implementation ('org.springframework.boot:spring-boot-starter-undertow')
+
+    //validator
+    implementation('javax.validation:validation-api:2.0.1.Final')
+
+    implementation('org.hibernate.validator:hibernate-validator:6.0.9.Final')
+
+    //Elasticsearch
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '6.3.1'
+    implementation group: 'org.elasticsearch.client', name: 'transport', version: '6.3.1'
+    implementation group: 'org.elasticsearch.plugin', name: 'transport-netty4-client', version: '6.3.1'
+
+    implementation group: 'com.github.jsqlparser', name: 'jsqlparser', version: '1.3'
+    implementation group: 'com.alibaba', name: 'druid', version: '1.0.15'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.51'
+
+    //ConfigTool
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    implementation 'commons-io:commons-io:2.4'
+
+    //aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.apache.commons:commons-lang3:3.7'
+    implementation 'org.locationtech.spatial4j:spatial4j:0.7'
+    implementation 'com.google.guava:guava:15.0'
+    implementation 'org.hamcrest:hamcrest-all:1.3'
+    implementation 'junit:junit:4.11'
+//    implementation 'com.alibaba:fastjson:1.1.41'
+//    implementation 'org.locationtech.jts:jts-core:1.15.0'
+    implementation 'org.elasticsearch:elasticsearch:6.3.1'
+    implementation 'org.elasticsearch.client:x-pack-transport:6.3.1'
+//    implementation 'com.unboundid:unboundid-ldapsdk:3.2.0'
+//    implementation 'org.bouncycastle:bcprov-jdk15on:1.58'
+
+
+}
+
+configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    compile.exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+}
+

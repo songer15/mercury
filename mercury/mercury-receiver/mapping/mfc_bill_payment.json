@@ -1,0 +1,178 @@
+[
+  {
+    "name": "payment_id",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "create_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "last_modify_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "address",
+    "type": "keyword"
+  },
+  {
+    "name": "card_expire_month",
+    "type": "keyword"
+  },
+  {
+    "name": "card_expire_year",
+    "type": "keyword"
+  },
+  {
+    "name": "card_first_name",
+    "type": "keyword"
+  },
+  {
+    "name": "card_last_name",
+    "type": "keyword"
+  },
+  {
+    "name": "card_no",
+    "type": "keyword"
+  },
+  {
+    "name": "card_security_code",
+    "type": "keyword"
+  },
+  {
+    "name": "city",
+    "type": "keyword"
+  },
+  {
+    "name": "country",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "end_user_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "iid",
+    "type": "long"
+  },
+  {
+    "name": "order_amount",
+    "type": "double"
+  },
+  {
+    "name": "order_currency",
+    "type": "keyword"
+  },
+  {
+    "name": "order_id",
+    "type": "keyword"
+  },
+  {
+    "name": "order_product",
+    "type": "keyword"
+  },
+  {
+    "name": "price",
+    "type": "double"
+  },
+  {
+    "name": "currency",
+    "type": "keyword"
+  },
+  {
+    "name": "payment_err_code",
+    "type": "keyword"
+  },
+  {
+    "name": "payment_err_msg",
+    "type": "keyword"
+  },
+  {
+    "name": "payment_gateway",
+    "type": "keyword"
+  },
+  {
+    "name": "payment_req_ts",
+    "type": "long"
+  },
+  {
+    "name": "payment_resp_ts",
+    "type": "long"
+  },
+  {
+    "name":"payment_result",
+    "type":"integer"
+  },
+  {
+    "name":"paymentTradeId",
+    "type":"keyword"
+  },
+  {
+    "name":"payment_type",
+    "type":"integer"
+  },
+  {
+    "name":"phone",
+    "type":"keyword"
+  },
+  {
+    "name":"service_days",
+    "type":"integer"
+  },
+  {
+    "name":"status",
+    "type":"integer"
+  },
+  {
+    "name":"uid",
+    "type":"long"
+  },
+  {
+    "name":"zip",
+    "type":"keyword"
+  },
+  {
+    "name":"payment_method",
+    "type":"keyword"
+  },
+  {
+    "name":"sid",
+    "type":"long"
+  },
+  {
+    "name":"device_limit",
+    "type":"integer"
+  },
+  {
+    "name":"order_product_id",
+    "type":"long"
+  },
+  {
+    "name":"account_id",
+    "type":"keyword"
+  },
+  {
+    "name":"final_price",
+    "type":"double"
+  }
+]

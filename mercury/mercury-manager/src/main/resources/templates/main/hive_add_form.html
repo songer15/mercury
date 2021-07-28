@@ -1,0 +1,41 @@
+<form id="hive_table_add_form" lay-filter="hive_table_add_form" class="layui-form model-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">SQL</label>
+        <div class="layui-input-block">
+            <textarea name="command" id="command" placeholder="create hive table sql" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="hive_table_add_form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var database='${database}';
+
+        // 表单提交事件
+        form.on('submit(hive_table_add_form-submit)', function (data) {
+            layer.load(2);
+            $.post('hive/add', {
+                database: database,
+                command: data.field.command
+            }, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+</script>

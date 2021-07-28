@@ -1,0 +1,46 @@
+[
+  {
+    "name": "login_code",
+    "type": "long"
+  },
+  {
+    "name": "related_id",
+    "type": "keyword"
+  },
+  {
+    "name": "related_method",
+    "type": "integer"
+  },
+  {
+    "name": "expire_time",
+    "type": "date"
+  },
+  {
+    "name": "client_session",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "imei",
+    "type": "keyword"
+  },
+  {
+    "name": "android_id",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_serial",
+    "type": "keyword"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  }
+]

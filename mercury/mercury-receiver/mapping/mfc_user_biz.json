@@ -1,0 +1,94 @@
+[
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "props",
+    "type": "long"
+  },
+  {
+    "name": "region",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "user_group",
+    "type": "keyword"
+  },
+  {
+    "name": "address",
+    "type": "keyword"
+  },
+  {
+    "name": "appver",
+    "type": "long"
+  },
+  {
+    "name": "batch_number",
+    "type": "keyword"
+  },
+  {
+    "name": "vendor_id",
+    "type": "long"
+  },
+  {
+    "name": "act_date",
+    "type": "date"
+  },
+  {
+    "name": "pay_date",
+    "type": "date"
+  },
+  {
+    "name": "vendor_channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "client_region",
+    "type": "keyword"
+  },
+  {
+    "name": "biz_to_account",
+    "type": "integer"
+  },
+  {
+    "name": "install_type",
+    "type": "integer"
+  },
+  {
+    "name": "plan",
+    "type": "integer"
+  },
+  {
+    "name": "biz_type",
+    "type": "keyword"
+  },
+  {
+    "name": "biz_duration",
+    "type": "long"
+  },
+  {
+    "name": "expire_ts",
+    "type": "long"
+  },
+  {
+    "name": "reg_ts",
+    "type": "long"
+  }
+]

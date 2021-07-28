@@ -1,0 +1,94 @@
+[
+  {
+    "name": "account_id",
+    "type": "long"
+  },
+  {
+    "name": "sub_account_id",
+    "type": "long"
+  },
+  {
+    "name": "meta_id",
+    "type": "long"
+  },
+  {
+    "name": "meta_id2",
+    "type": "keyword"
+  },
+  {
+    "name": "episode_no",
+    "type": "integer"
+  },
+  {
+    "name": "season_no",
+    "type": "integer"
+  },
+  {
+    "name": "account_type",
+    "type": "integer"
+  },
+  {
+    "name": "sort_no",
+    "type": "long"
+  },
+  {
+    "name": "video_id",
+    "type": "long"
+  },
+  {
+    "name": "imdb_id",
+    "type": "keyword"
+  },
+  {
+    "name": "tmdb_id",
+    "type": "keyword"
+  },
+  {
+    "name": "duration",
+    "type": "integer"
+  },
+  {
+    "name": "collection_time",
+    "type": "integer"
+  },
+  {
+    "name": "played_time",
+    "type": "long"
+  },
+  {
+    "name": "add_time",
+    "type": "long"
+  },
+  {
+    "name": "linked_date",
+    "type": "keyword"
+  },
+  {
+    "name": "video_type",
+    "type": "keyword"
+  },
+  {
+    "name": "played",
+    "type": "integer"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "source",
+    "type": "keyword"
+  }
+]

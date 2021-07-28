@@ -1,0 +1,37 @@
+<div class="layui-side-scroll">
+    <ul class="layui-nav layui-nav-tree" style="margin-top: 15px;">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;"><i class="layui-icon layui-icon-home"></i>&emsp;<cite>Home Page</cite></a>
+            <dl class="layui-nav-child">
+                <dd class="layui-this">
+                    <a lay-href="home/console">console</a>
+                </dd>
+            </dl>
+        </li>
+
+        <% for(menu in menus) { %>
+        <li class="layui-nav-item">
+            <a lay-href="${menu.menuUrl}"><i class="layui-icon ${menu.menuIcon}"></i>&emsp;<cite>${menu.menuName}</cite></a>
+            <% if(menu.subMenus.~size>0) { %>
+            <dl class="layui-nav-child">
+                <% for(subMenu in menu.subMenus) { %>
+                <dd>
+                    <a lay-href="${subMenu.menuUrl}">${subMenu.menuName}</a>
+
+                    <% if(subMenu.subMenus.~size>0) { %>
+                    <dl class="layui-nav-child">
+                        <% for(temp in subMenu.subMenus) { %>
+                        <dd>
+                            <a lay-href="${temp.menuUrl}">${temp.menuName}</a>
+                        </dd>
+                        <% } %>
+                    </dl>
+                    <% } %>
+                </dd>
+                <% } %>
+            </dl>
+            <% } %>
+        </li>
+        <% } %>
+    </ul>
+</div>

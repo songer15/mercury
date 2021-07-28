@@ -1,0 +1,58 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "action_detail",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "app_ver",
+    "type": "long"
+  },
+  {
+    "name": "action_status",
+    "type": "keyword"
+  },
+  {
+    "name": "action_region",
+    "type": "keyword"
+  }
+]

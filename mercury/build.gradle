@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'com.valor'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+ext {
+    springBootVersion = '2.3.2.RELEASE'
+}
+
+allprojects {
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenLocal()
+        jcenter()
+        maven { url "https://artifacts.elastic.co/maven" }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

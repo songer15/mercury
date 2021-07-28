@@ -1,0 +1,222 @@
+[
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "mediaCode",
+    "type": "keyword"
+  },
+  {
+    "name": "channelId",
+    "type": "keyword"
+  },
+  {
+    "name": "usedServers",
+    "type": "keyword"
+  },
+  {
+    "name": "lastServer",
+    "type": "keyword"
+  },
+  {
+    "name": "startTime",
+    "type": "long"
+  },
+  {
+    "name": "endTime",
+    "type": "long"
+  },
+  {
+    "name": "elapsedTime",
+    "type": "long"
+  },
+  {
+    "name": "totalGrpCnt",
+    "type": "long"
+  },
+  {
+    "name": "dropCnt",
+    "type": "long"
+  },
+  {
+    "name": "dropDurMax",
+    "type": "long"
+  },
+  {
+    "name": "dropDurMin",
+    "type": "long"
+  },
+  {
+    "name": "dropDurAvg",
+    "type": "long"
+  },
+  {
+    "name": "dropResendPacketMax",
+    "type": "long"
+  },
+  {
+    "name": "dropResendPacketCnt",
+    "type": "long"
+  },
+  {
+    "name": "dropResendPacketMin",
+    "type": "long"
+  },
+  {
+    "name": "dropResendPacketAvg",
+    "type": "long"
+  },
+  {
+    "name": "completeCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeByResendCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeNoResendCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeDurMax",
+    "type": "long"
+  },
+  {
+    "name": "completeDurMin",
+    "type": "long"
+  },
+  {
+    "name": "completeDurAvg",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketMax",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketMin",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketAvg",
+    "type": "long"
+  },
+  {
+    "name": "reqDldTimes",
+    "type": "long"
+  },
+  {
+    "name": "reqPacketCnt",
+    "type": "long"
+  },
+  {
+    "name": "cancelAllTimes",
+    "type": "long"
+  },
+  {
+    "name": "cancelTimes",
+    "type": "long"
+  },
+  {
+    "name": "cancelCnt",
+    "type": "long"
+  },
+  {
+    "name": "cancelDurMax",
+    "type": "long"
+  },
+  {
+    "name": "cancelDurMin",
+    "type": "long"
+  },
+  {
+    "name": "cancelDurAvg",
+    "type": "long"
+  },
+  {
+    "name": "cancelResendPacketCnt",
+    "type": "long"
+  },
+  {
+    "name": "cancelResendPacketMax",
+    "type": "long"
+  },
+  {
+    "name": "cancelResendPacketMin",
+    "type": "long"
+  },
+  {
+    "name": "cancelResendPacketAvg",
+    "type": "long"
+  },
+  {
+    "name": "initTimes",
+    "type": "integer"
+  },
+  {
+    "name": "authTimes",
+    "type": "integer"
+  },
+  {
+    "name": "authSuccessTimes",
+    "type": "integer"
+  },
+  {
+    "name": "authFailureTimes",
+    "type": "integer"
+  },
+  {
+    "name": "totalResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "totalResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "totalResendRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "dropResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "dropResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "dropResendRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "completeResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "completeResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "completeResendRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "cancelResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "cancelResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "cancelResendRatioAvg",
+    "type": "integer"
+  }
+]

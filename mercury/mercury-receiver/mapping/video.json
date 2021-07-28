@@ -1,0 +1,100 @@
+[
+  {
+    "name": "video_id",
+    "type": "keyword"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "text",
+    "index": true,
+    "analyzer": "whitespace"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "remove_mark",
+    "type": "keyword"
+  },
+  {
+    "name": "attribute",
+    "type": "keyword"
+  },
+  {
+    "name": "can_rate",
+    "type": "integer"
+  },
+  {
+    "name": "country",
+    "type": "keyword"
+  },
+  {
+    "name": "goof",
+    "type": "keyword"
+  },
+  {
+    "name": "language",
+    "type": "keyword"
+  },
+  {
+    "name": "num_votes",
+    "type": "double"
+  },
+  {
+    "name": "photo_height",
+    "type": "integer"
+  },
+  {
+    "name": "photo_url",
+    "type": "keyword"
+  },
+  {
+    "name": "photo_width",
+    "type": "integer"
+  },
+  {
+    "name": "production_status",
+    "type": "keyword"
+  },
+  {
+    "name": "rating",
+    "type": "double"
+  },
+  {
+    "name": "runtime",
+    "type": "integer"
+  },
+  {
+    "name": "tagline",
+    "type": "keyword"
+  },
+  {
+    "name": "title",
+    "type": "keyword"
+  },
+  {
+    "name": "trivium",
+    "type": "keyword"
+  },
+  {
+    "name": "type",
+    "type": "keyword"
+  },
+  {
+    "name": "year",
+    "type": "integer"
+  },
+  {
+    "name": "year_end",
+    "type": "keyword"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  }
+]

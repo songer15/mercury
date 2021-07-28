@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Email",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "clientRegion",
+    "type": "keyword"
+  },
+  {
+    "name": "appVersion",
+    "type": "long"
+  },
+  {
+    "name": "vendorId",
+    "type": "long"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "status",
+    "type": "keyword"
+  },
+  {
+    "name": "Action",
+    "type": "keyword"
+  },
+  {
+    "name": "availableServiceDays",
+    "type": "integer"
+  },
+  {
+    "name": "chargeType",
+    "type": "keyword"
+  }
+]

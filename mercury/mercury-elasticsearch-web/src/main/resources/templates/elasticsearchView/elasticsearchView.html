@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Elasticsearch Data View</title>
+</head>
+
+<body>
+
+<div class="layui-form layui-form-pane">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label" style="width: 180px">Index</label>
+            <div class="layui-input-inline">
+                <input id="elasticsearch-view-index" type="text" class="layui-input" ts-selected>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button id="elasticsearch-view-btn" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>View
+            </button>
+        </div>
+        <div class="layui-inline">
+            <div id ="viewHits" class="layui-form-mid layui-word-aux"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-body">
+        <table id="elasticsearchView-table" lay-filter="elasticsearchView-table"></table>
+    </div>
+</div>
+
+
+</body>
+
+<script>
+    layui.use(['table', 'util', 'tableSelect', 'layer'], function () {
+        var table = layui.table;
+        var util = layui.util;
+        var tableSelect = layui.tableSelect;
+        var layer = layui.layer;
+
+        tableSelect.render({
+            elem: '#elasticsearch-view-index',
+            searchKey: "index",
+            searchPlaceholder: "Search by Index",
+            checkedKey: "index",
+            table: {
+                url: "elasticsearch/searchIndexs",
+                cols: [[
+                    {type: 'radio'},
+                    {field: 'index', title: 'Index', sorted: true},
+                    {
+                        field: 'indexTotal', templet: function (d) {
+                            var docs = d.indexTotal.indexDocs.count;
+                            return docs;
+                        }, title: 'Docs', sorted: true
+                    },
+                    {
+                        field: 'indexTotal', templet: function (d) {
+                            var byte = d.indexTotal.indexStore.sizeInBytes;
+                            var kb = byte / 1024;
+                            if (kb < 1)
+                                return byte + " B";
+                            var mb = kb / 2014;
+                            if (mb < 1)
+                                return kb.toFixed(2) + " KB";
+                            var gb = mb / 1024;
+                            if (gb < 1)
+                                return mb.toFixed(2) + " MB";
+                            return gb.toFixed(2) + " GB";
+                        }, title: 'Size'
+                    }
+                ]]
+            },
+            done: function (elem, data) {
+                var NEWJSON = [];
+                layui.each(data.data, function (index, item) {
+                    NEWJSON.push(item.index)
+                });
+                elem.val(NEWJSON.join(","));
+            }
+        });
+
+        // 按钮点击事件
+        $('#elasticsearch-view-btn').click(function () {
+            var index = $('#elasticsearch-view-index').val();
+            $.ajax({
+                url: 'elasticsearch/dataView',
+                type: 'post',
+                data: {index: index},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.code == 200) {
+                        if (null == data.data || data.data == "")
+                            layer.msg("No data found");
+                        else {
+
+                            $('#viewHits').html("Total Hits:"+data.data.total)
+                            showElasticsearchData(data.data);
+                        }
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            });
+        });
+
+        function showElasticsearchData(data) {
+            var columns = new Array();
+            for (var i in data.columns) {
+                var column = data.columns[i];
+                if (column == "LocalCreateTime")
+                    columns.push({
+                        field: column, title: column,templet: function (d) {
+                            if (d.LocalCreateTime == -1)
+                                return "";
+                            else
+                                return util.toDateString(d.LocalCreateTime);
+                        }
+                    });
+                else
+                    columns.push({
+                        field: column, title: column
+                    })
+            }
+
+            table.render({
+                elem: '#elasticsearchView-table',
+                cellMinWidth:150,
+                cols: [columns],
+                data: data.datas,
+                limit: data.total
+            });
+        }
+    });
+</script>
+</html>

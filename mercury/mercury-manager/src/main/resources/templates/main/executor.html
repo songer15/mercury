@@ -1,0 +1,186 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Executor</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">home page</a>
+          <a><cite>Executor</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="taskExecutor-search-name" class="layui-input search-input" type="text" placeholder="name"/>
+            <input id="taskExecutor-search-clientIp" class="layui-input search-input" type="text" placeholder="clientIp"/>
+            <button id="taskExecutor-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search</button>
+            <button id="taskExecutor-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all</button>
+            <button id="taskExecutor-btn-add" class="layui-btn icon-btn"><i class="layui-icon"></i>add</button>
+        </div>
+        <table id="taskExecutor-table" lay-filter="taskExecutor-table"></table>
+    </div>
+</div>
+<script type="text/html" id="switchEnable">
+    <input type="checkbox" name="enable" value="{{d.enable}}" lay-skin="switch" lay-text="true|false" lay-filter="enable" {{ d.enable == 'on' ? 'checked' : '' }} disabled>
+</script>
+<script type="text/html" id="taskExecutor-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">edit</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+<script>
+    layui.use(['table', 'admin', 'util', 'form', 'layer'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var util = layui.util;
+
+        //第一个实例
+        table.render({
+            elem: '#taskExecutor-table',
+            url: 'executor/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                {
+                    field: 'id',
+                    title: 'ID',
+                    width:60,
+                    sort: true
+                },
+                {
+                    field: 'clientName',
+                    title: 'clientName',
+                    width:180,
+                    sort: true
+                },{
+                    field: 'clientPsd',
+                    title: 'clientPsd',
+                    width:120,
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    title: 'createTime'
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.lastModifyTime);
+                    },
+                    title: 'lastModifyTime',
+                    sort: true
+                },{
+                    field: 'status',
+                    title: 'status',
+                    width:120,
+                    sort: true
+                }, {
+                    field: 'enable',
+                    title: 'enable',
+                    templet: '#switchEnable',
+                    width:120,
+                    sort: true
+                }, {
+                    field: 'clientIP',
+                    title: 'clientIP',
+                    width:150,
+                    sort: true
+                }, {
+                    field: 'executorType',
+                    title: 'executorType',
+                    width:150,
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.lastActionTime);
+                    },
+                    title: 'lastActionTime',
+                    sort: true
+                }, {
+                    field: 'description',
+                    title: 'description',
+                    width:150,
+                    sort: true
+                }, {
+                    align: 'center',
+                    toolbar: '#taskExecutor-table-bar',
+                    title: 'operation'
+                }
+                ]
+            ]
+        });
+
+        // 工具条点击事件
+        table.on('tool(taskExecutor-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            }
+            else if (layEvent === 'delete') { // 删除
+                layer.confirm('are you sure to delete this item？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('executor/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+        // 添加按钮点击事件
+        $('#taskExecutor-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#taskExecutor-btn-search').click(function () {
+            var id = $('#taskExecutor-search-id').val();
+            var name = $('#taskExecutor-search-name').val();
+            var clientIp = $('#taskExecutor-search-clientIp').val();
+            table.reload('taskExecutor-table', {
+                url: 'executor/queryList',
+                where: {
+                    clientName: name,
+                    clientIP: clientIp
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#taskExecutor-btn-show').click(function () {
+            table.reload('taskExecutor-table', {
+                url: 'executor/list'
+            });
+        });
+
+        // 显示表单弹窗
+        var showEditModel = function (data) {
+            var title = data ? 'edit' : 'add';
+            admin.putTempData('t_executor', data);
+            admin.popupCenter({
+                title: title,
+                area: "600px",
+                path: 'executor/editForm',
+                finish: function () {
+                    table.reload('taskExecutor-table', {});
+                }
+            });
+        };
+
+    });
+</script>

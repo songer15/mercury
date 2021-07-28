@@ -1,0 +1,150 @@
+[
+  {
+    "name": "custom_id",
+    "type": "keyword"
+  },
+  {
+    "name": "source",
+    "type": "keyword"
+  },
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "status_info",
+    "type": "keyword"
+  },
+  {
+    "name": "name",
+    "type": "keyword"
+  },
+  {
+    "name": "pwd",
+    "type": "keyword"
+  },
+  {
+    "name": "active_date",
+    "type": "keyword"
+  },
+  {
+    "name": "expire_date",
+    "type": "keyword"
+  },
+  {
+    "name": "country",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "user_group",
+    "type": "keyword"
+  },
+  {
+    "name": "permission",
+    "type": "keyword"
+  },
+  {
+    "name": "BN",
+    "type": "keyword"
+  },
+  {
+    "name": "act_ts",
+    "type": "keyword"
+  },
+  {
+    "name": "activate_code",
+    "type": "keyword"
+  },
+  {
+    "name": "echo_str",
+    "type": "keyword"
+  },
+  {
+    "name": "vendor_id",
+    "type": "long"
+  },
+  {
+    "name": "vendor",
+    "type": "keyword"
+  },
+  {
+    "name": "vendor_channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "remark",
+    "type": "keyword"
+  },
+  {
+    "name": "reason",
+    "type": "keyword"
+  },
+  {
+    "name": "version",
+    "type": "keyword"
+  },
+  {
+    "name": "version_code",
+    "type": "integer"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "properties",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "login_method",
+    "type": "keyword"
+  },
+  {
+    "name": "login_id",
+    "type": "keyword"
+  },
+  {
+    "name": "login_key",
+    "type": "keyword"
+  },
+  {
+    "name": "device_unique_id",
+    "type": "keyword"
+  },
+  {
+    "name": "device_id",
+    "type": "keyword"
+  },
+  {
+    "name": "actDate",
+    "type": "date"
+  },
+  {
+    "name": "installType",
+    "type": "integer"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "pre_payed_plan",
+    "type": "integer"
+  }
+]

@@ -1,0 +1,75 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.valor'
+version '0.4.2'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src/main/java','vms-metric/metric-server/src/main/java']
+//        }
+//    }
+//}
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.vms.metric.spider.SpiderApplication'
+    }
+}
+
+dependencies {
+    compile project(":mercury-common")
+    compile project(":mercury-sender")
+    implementation ('org.elasticsearch:elasticsearch:6.3.1')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "org.springframework.boot:spring-boot-test:2.0.1.RELEASE"
+
+
+    //SQL解释器
+    implementation group: 'com.github.jsqlparser', name: 'jsqlparser', version: '2.1'
+
+    //springboot
+    implementation 'org.springframework.boot:spring-boot:2.0.1.RELEASE'
+
+    //hibernate
+    implementation group: 'org.springframework', name: 'spring-orm', version: '4.1.7.RELEASE'
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '4.3.10.Final'
+
+    //mysql
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.19'
+
+    //h2
+    implementation "com.h2database:h2:1.4.197"
+
+    //spring batch
+    compile "org.springframework.boot:spring-boot-starter-batch:2.0.1.RELEASE"
+
+
+
+}
+
+configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    compile.exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+}

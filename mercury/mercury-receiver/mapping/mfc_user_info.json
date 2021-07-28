@@ -1,0 +1,162 @@
+[
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "data_ver",
+    "type": "long"
+  },
+  {
+    "name": "last_modify_time",
+    "type": "date"
+  },
+  {
+    "name": "last_modify_user",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "props",
+    "type": "long"
+  },
+  {
+    "name": "region",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "user_group",
+    "type": "keyword"
+  },
+  {
+    "name": "address",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "name",
+    "type": "keyword"
+  },
+  {
+    "name": "phone",
+    "type": "keyword"
+  },
+  {
+    "name": "appver",
+    "type": "long"
+  },
+  {
+    "name": "batch_number",
+    "type": "keyword"
+  },
+  {
+    "name": "act_ts",
+    "type": "long"
+  },
+  {
+    "name": "vendor_id",
+    "type": "long"
+  },
+  {
+    "name": "vendor_prop",
+    "type": "keyword"
+  },
+  {
+    "name": "pay_ts",
+    "type": "long"
+  },
+  {
+    "name": "act_date",
+    "type": "date"
+  },
+  {
+    "name": "pay_date",
+    "type": "date"
+  },
+  {
+    "name": "vendor_channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "client_region",
+    "type": "keyword"
+  },
+  {
+    "name": "login_key",
+    "type": "keyword"
+  },
+  {
+    "name": "login_uid",
+    "type": "long"
+  },
+  {
+    "name": "login_id",
+    "type": "keyword"
+  },
+  {
+    "name": "biz_to_account",
+    "type": "integer"
+  },
+  {
+    "name": "login_type",
+    "type": "integer"
+  },
+  {
+    "name": "remark",
+    "type": "keyword"
+  },
+  {
+    "name": "unique_id",
+    "type": "keyword"
+  },
+  {
+    "name": "install_type",
+    "type": "integer"
+  },
+  {
+    "name": "plan",
+    "type": "integer"
+  },
+  {
+    "name": "reason",
+    "type": "keyword"
+  },
+  {
+    "name": "biz_type",
+    "type": "keyword"
+  },
+  {
+    "name": "biz_duration",
+    "type": "long"
+  },
+  {
+    "name": "expire_ts",
+    "type": "long"
+  },
+  {
+    "name": "expire_date",
+    "type": "date"
+  },
+  {
+    "name": "reg_date",
+    "type": "date"
+  },
+  {
+    "name": "reg_ts",
+    "type": "long"
+  }
+]

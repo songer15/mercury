@@ -1,0 +1,14 @@
+[
+  {
+    "name": "value",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  }
+]

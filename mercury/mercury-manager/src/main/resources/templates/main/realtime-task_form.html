@@ -1,0 +1,123 @@
+<form id="realTimeTask-form" lay-filter="realTimeTask-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">name</label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">description</label>
+        <div class="layui-input-block">
+            <textarea name="desc" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">status</label>
+        <div class="layui-input-block">
+            <select name="status" lay-verify="required">
+                <option value="INIT">INIT</option>
+                <option value="PUBLISHING">PUBLISHING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="CANCELLING">CANCELLING</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="FINISH">FINISH</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">lastPublishInstanceId</label>
+        <div class="layui-input-block">
+            <input name="lastPublishInstanceId" placeholder="lastPublishInstanceId" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">executor</label>
+        <div class="layui-input-block">
+            <select name="executor" lay-verify="required">
+                <% for(taskExecutor in executors) { %>
+                <option value="${taskExecutor}">${taskExecutor}</option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">fileId</label>
+        <div class="layui-input-block">
+            <select name="fileId" lay-verify="required" required>
+                <option value="">Null</option>
+                <% for(file in files) { %>
+                <option value="${file.id}">${file.fileName}</option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">entryClass</label>
+        <div class="layui-input-block">
+            <input name="entryClass" placeholder="entryClass" type="text" class="layui-input"
+                   maxlength="400" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Flink-ID</label>
+        <div class="layui-input-block">
+            <input name="jobId" placeholder="jobId" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">programArguments</label>
+        <div class="layui-input-block">
+            <input name="programArguments" placeholder="programArguments" type="text" class="layui-input"
+                   maxlength="400"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">parallelism</label>
+        <div class="layui-input-block">
+            <select name="parallelism" lay-verify="required" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="realTimeTask-form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'realTimeTask/add';
+        var realTimeTask = admin.getTempData('t_realtime-task');
+        if (realTimeTask) {
+            url = 'realTimeTask/edit';
+            form.val('realTimeTask-form', realTimeTask);
+        }
+        form.render();
+
+        // 表单提交事件
+        form.on('submit(realTimeTask-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+</script>

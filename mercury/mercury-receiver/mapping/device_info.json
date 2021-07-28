@@ -1,0 +1,54 @@
+[
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "android_id",
+    "type": "keyword"
+  },
+  {
+    "name": "bluetooth_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_serial",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_serial_number",
+    "type": "keyword"
+  },
+  {
+    "name": "imei",
+    "type": "keyword"
+  },
+  {
+    "name": "model",
+    "type": "keyword"
+  },
+  {
+    "name": "wifi_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "source",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_id",
+    "type": "keyword"
+  }
+]

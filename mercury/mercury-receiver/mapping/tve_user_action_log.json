@@ -1,0 +1,150 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "client_region",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "action_detail",
+    "type": "keyword"
+  },
+  {
+    "name": "app_id",
+    "type": "keyword"
+  },
+  {
+    "name": "app_ver",
+    "type": "keyword"
+  },
+  {
+    "name": "proxy_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "device_model",
+    "type": "keyword"
+  },
+  {
+    "name": "device_cpu",
+    "type": "keyword"
+  },
+  {
+    "name": "device_os",
+    "type": "keyword"
+  },
+  {
+    "name": "device_factor1",
+    "type": "keyword"
+  },
+  {
+    "name": "device_factor2",
+    "type": "keyword"
+  },
+  {
+    "name": "device_factor3",
+    "type": "keyword"
+  },
+  {
+    "name": "last_action_time",
+    "type": "date"
+  },
+  {
+    "name": "login_id",
+    "type": "keyword"
+  },
+  {
+    "name": "duid",
+    "type": "keyword"
+  },
+  {
+    "name": "version_code",
+    "type": "keyword"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "loginmethod",
+    "type": "integer"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name":"FirmWare",
+    "type":"keyword"
+  },
+  {
+    "name":"Imei",
+    "type":"keyword"
+  },
+  {
+    "name":"SpecialVal",
+    "type":"keyword"
+  },
+  {
+    "name":"Serial",
+    "type":"keyword"
+  },
+  {
+    "name":"HardWare",
+    "type":"keyword"
+  },
+  {
+    "name":"WifiMac",
+    "type":"keyword"
+  },
+  {
+    "name":"SystemVersion",
+    "type":"keyword"
+  },
+  {
+    "name":"AndroidId",
+    "type":"keyword"
+  },
+  {
+    "name":"EthernetMac",
+    "type":"keyword"
+  },
+  {
+    "name":"Model",
+    "type":"keyword"
+  },
+  {
+    "name":"CpuSerial",
+    "type":"keyword"
+  },
+  {
+    "name":"Seed",
+    "type":"keyword"
+  }
+]

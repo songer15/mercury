@@ -1,0 +1,115 @@
+<form id="hive_edit_form" lay-filter="hive_edit_form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">localCreateTime</label>
+        <div class="layui-input-block">
+            <input name="localCreateTime" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">createTime</label>
+        <div class="layui-input-block">
+            <input name="createTime" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">nextExecuteTime</label>
+        <div class="layui-input-block">
+            <input name="nextExecuteTime" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">lastExecuteTime</label>
+        <div class="layui-input-block">
+            <input name="lastExecuteTime" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">name</label>
+        <div class="layui-input-block">
+            <input name="name" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">location</label>
+        <div class="layui-input-block">
+            <input name="location" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">owner</label>
+        <div class="layui-input-block">
+            <input name="owner" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">tableType</label>
+        <div class="layui-input-block">
+            <input name="tableType" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">status</label>
+        <div class="layui-input-block">
+            <input name="status" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">database</label>
+        <div class="layui-input-block">
+            <input name="database" type="text" class="layui-input" readonly="readonly"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">cron</label>
+        <div class="layui-input-block">
+            <input name="cron" placeholder="cron" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">command</label>
+        <div class="layui-input-block">
+            <textarea name="command" placeholder="command" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="hive_edit_form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var hive = admin.getTempData('t_hive');
+        if (hive) {
+            form.val('hive_edit_form', hive);
+        }
+
+        // 表单提交事件
+        form.on('submit(hive_edit_form-submit)', function (data) {
+            layer.load(2);
+            $.post('hive/edit', {
+                id:data.field.id,
+                cron:data.field.cron,
+                command:data.field.command
+            }, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+
+
+
+</script>

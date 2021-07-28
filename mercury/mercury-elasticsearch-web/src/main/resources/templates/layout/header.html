@@ -1,0 +1,36 @@
+<div class="layui-logo">
+    <!--<img src="assets/images/Webpack.png"/>-->
+    Mercury Search
+</div>
+<ul class="layui-nav layui-layout-left">
+    <li class="layui-nav-item" lay-unselect>
+        <a ew-event="flexible" title="侧边伸缩">
+            <i class="layui-icon layui-icon-shrink-right"></i>
+        </a>
+    </li>
+    <li class="layui-nav-item" lay-unselect>
+        <a ew-event="refresh" title="刷新">
+            <i class="layui-icon layui-icon-refresh-3"></i>
+        </a>
+    </li>
+</ul>
+<ul class="layui-nav layui-layout-right">
+    <li class="layui-nav-item" lay-unselect>
+        <a>
+            <img src="${request.contextPath}/assets/images/head.png" class="layui-nav-img">
+            <cite>${user.username}</cite>
+        </a>
+        <!--<dl class="layui-nav-child">-->
+            <!--<dd>-->
+                <!--<a href="javascript:void(0);" onclick="changePassword()">Change Password</a>-->
+            <!--</dd>-->
+            <!--<dd>-->
+                <!--<a href="">Basic Information</a>-->
+            <!--</dd>-->
+        <!--</dl>-->
+    </li>
+    <li class="layui-nav-item">
+        <a href="${request.contextPath}/logout">Exit</a>
+    </li>
+</ul>
+

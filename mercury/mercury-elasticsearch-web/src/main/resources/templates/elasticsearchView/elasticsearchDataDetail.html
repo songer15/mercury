@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+
+        <pre id="detail-pre" class="layui-code" ></pre>
+
+</body>
+
+
+<script>
+    layui.use(['layer', 'admin', 'code'], function () {
+        var admin = layui.admin;
+
+        var detailData = admin.getTempData('elasticsearchDataDetail');
+
+        layui.code({
+            elem: '#detail-pre',
+            title: 'JSON',
+            height: '480px',
+            skin: 'notepad'
+        });
+
+        $('#detail-pre').html(JSON.stringify(detailData, null, "\t"));
+    });
+
+</script>

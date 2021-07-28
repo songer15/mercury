@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>flowchart</title>
+    <link rel="stylesheet" type="text/css" href="assets/libs/chart/chart.css">
+    <!--<script src="assets/libs/chart/jquery.min.js"></script>-->
+    <!--<script src="assets/libs/chart/jsPlumb.min.js"></script>-->
+    <!--<script src='assets/libs/chart/chart.js'></script>-->
+    <link rel="stylesheet" href="assets/libs/chart/flow.css">
+</head>
+
+<body>
+<div class="layui-row" style="margin-left:10px">
+    <div class="layui-row layui-col-md4 layui-col-space15">
+        <div class="layui-row layui-col-md12 layui-col-space5">
+            <form class="layui-form" style="padding-top: 10px;padding-right: 0px">
+                <div class="layui-col-md8">
+                    <input id="meta-offLineTask-add-search-name" class="layui-input search-input" style="width: 100%"
+                           type="text"
+                           placeholder="任务名"/>
+                </div>
+                <div class="layui-col-md4">
+                    <select id="meta-offLineTask-add-search-type">
+                        <option value="SPIDER" selected>SPIDER</option>
+                        <option value="SCRIPT">SCRIPT</option>
+                        <option value="HIVE">HIVE</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div class="layui-row layui-col-md12 layui-col-space5">
+            <div class="layui-col-md4">
+                <button id="meta-offLineTask-add-btn-search" class="layui-btn layui-btn" style="width:100%">search
+                </button>
+            </div>
+            <div class="layui-col-md4">
+                <button class="layui-btn layui-btn" id="meta-offLineTask-add-btn-save" style="width:100%">save
+                </button>
+            </div>
+            <div class="layui-col-md4">
+                <button class="layui-btn icon-btn layui-btn-warm" id="meta-offLineTask-add-btn-load" style="width:100%">load</button>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <table id="meta-offLineTask-add-table" lay-filter="meta-offLineTask-add-table"
+                   style="width:100%"></table>
+        </div>
+    </div>
+    <div class="layui-col-md8">
+        <div class="layui-col-md12">
+            <div id="offLineTask-chart"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/html" id="meta-offLineTask-view-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="add">add</a>
+    <a class="layui-btn layui-btn-xs" lay-event="detail">detail</a>
+</script>
+<script>
+    Chart.ready(() => {
+        const basicX = 150;
+        const startY = 20;
+        const endY = 350;
+        const newX = 50;
+        const newY = 50;
+        let _current = null; // 当前选择节点id
+
+        let _showNodeInfo = (data) => {
+            if (!data) {
+                return;
+            }
+            let infoPanel = $('.right');
+            infoPanel.find('.proc-name').text(data.name || '');
+            infoPanel.find('.proc-desc').text(data.desc || '');
+        };
+
+        let _hideNodeInfo = () => {
+            _showNodeInfo({
+                name: '',
+                desc: ''
+            });
+        };
+
+        let _createChart = function() {
+            return new Chart($('#offLineTask-chart'), {
+                onNodeClick (data) { // 点击节点时触发
+                    _showNodeInfo(data);
+                    _current = data.nodeId;
+                },
+                onNodeDel (data) {
+                    _hideNodeInfo();
+                }
+            })
+        };
+
+        let chart = _createChart();
+
+        //添加开始节点
+        let nodeStart = chart.addNode('start', basicX, startY, {
+            class: 'node-start',
+            removable: false,
+            id: 'chart-node-start',
+            data: {
+                name: 'start',
+                nodeType: 0
+            }
+        });
+        nodeStart.addPort({
+            isSource: true
+        });
+
+        //添加结束节点
+        let nodeEnd = chart.addNode('end', basicX, endY, {
+            class: 'node-end',
+            removable: false,
+            id: 'chart-node-end',
+            data: {
+                name: 'end',
+                nodeType: 0
+            }
+        });
+        nodeEnd.addPort({
+            isTarget: true,
+            position: 'Top'
+        });
+
+        layui.use(['table', 'admin', 'form', 'layer'], function () {
+           var table = layui.table;
+           var admin = layui.admin;
+           var form = layui.form;
+           var layer = layui.layer;
+           var offLineTask = admin.getTempData('t_task');
+           form.render();
+
+           //第一个实例
+           table.render({
+               elem: '#meta-offLineTask-add-table',
+               url: 'offLineMetaTask/list', //数据接口
+               page: true, //开启分页
+               cols: [
+                   [ //表头
+                       {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        fixed: 'left',
+                        width: 100
+                       },{
+                       field: 'name',
+                       title: '任务名',
+                       sort: true
+                   }, {
+                       align: 'center',
+                       toolbar: '#meta-offLineTask-view-table-bar',
+                       title: '操作',
+                       fixed: 'right',
+                       width: 120
+                      }
+                   ]
+               ]
+           });
+
+           table.on('tool(meta-offLineTask-add-table)', function (obj) {
+               var data = obj.data;
+               var layEvent = obj.event;
+               if (layEvent === 'add') {
+                 let node = chart.addNode(data.name, basicX, startY, {
+                     class: 'node-process',
+                     removable: true,
+                     id: data.id,
+                     data: {
+                         name: data.name,
+                         nodeType: 1
+                     }
+                 });
+                 node.addPort({
+                     isSource: true
+                 });
+                 node.addPort({
+                     isTarget: true,
+                     position: 'Top'
+                 });
+               } else if (layEvent === 'detail') {
+                   layer.open({
+                        title: false
+                        ,content: data.config
+                   });
+               }
+           });
+
+           var load=window.setTimeout(function (){
+                if(offLineTask){
+                    var dag=offLineTask.dag;
+                    if(dag){
+                        chart.clear();
+                        chart = _createChart();
+                        chart.fromJson(dag);
+                    }else{
+                        var jsonValue='{"nodes":[{"name":"start","nodeType":0,"nodeId":"chart-node-start","positionX":150,"positionY":20,"className":"node-start","removable":false},{"name":"end","nodeType":0,"nodeId":"chart-node-end","positionX":150,"positionY":350,"className":"node-end","removable":false}],"connections":[]}';
+                        chart.clear();
+                        chart = _createChart();
+                        chart.fromJson(jsonValue);
+                    }
+                }
+           },100);
+
+           $('#meta-offLineTask-add-btn-load').click(function () {
+                if(offLineTask){
+                    var dag=offLineTask.dag;
+                    if(dag){
+                        chart.clear();
+                        chart = _createChart();
+                        chart.fromJson(dag);
+                    }else{
+                        var jsonValue='{"nodes":[{"name":"start","nodeType":0,"nodeId":"chart-node-start","positionX":150,"positionY":20,"className":"node-start","removable":false},{"name":"end","nodeType":0,"nodeId":"chart-node-end","positionX":150,"positionY":350,"className":"node-end","removable":false}],"connections":[]}';
+                        chart.clear();
+                        chart = _createChart();
+                        chart.fromJson(jsonValue);
+                    }
+                }
+           });
+
+           $('#meta-offLineTask-add-btn-save').click(function () {
+               layer.confirm('是否确定保存？会删除今天的任务实例！', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    var jsonValue=JSON.stringify(chart.toJson());
+                    $.post('offLineTask/editDAG', {jsonValue:jsonValue,taskId:offLineTask.id}, function (data) {
+                    layer.closeAll('loading');
+                    if (data.code == 200) {
+                       layer.msg(data.msg, {icon: 1});
+                       admin.finishPopupCenter();
+                    } else {
+                       layer.msg(data.msg, {icon: 2});
+                    }
+                    admin.refresh();
+                    });
+               });
+           });
+
+           // 搜索按钮点击事件
+           $('#meta-offLineTask-add-btn-search').click(function () {
+               var name = $('#meta-offLineTask-add-search-name').val();
+               var type = $('#meta-offLineTask-add-search-type option:selected').val();
+               table.reload('meta-offLineTask-add-table', {
+                   url: 'offLineMetaTask/queryList',
+                   where: {
+                       name: name,
+                       type: type
+                   }, page: {
+                       curr: 1 //重新从第 1 页开始
+                   }
+               });
+           });
+       });
+    });
+
+
+
+
+
+</script>
+</html>

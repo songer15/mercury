@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-10-20T10:28:47</date>
+  <millis>1603160927688</millis>
+  <sequence>0</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:49</date>
+  <millis>1603160929650</millis>
+  <sequence>1</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:51</date>
+  <millis>1603160931647</millis>
+  <sequence>2</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:53</date>
+  <millis>1603160933647</millis>
+  <sequence>3</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:3</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:55</date>
+  <millis>1603160935648</millis>
+  <sequence>4</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:57</date>
+  <millis>1603160937649</millis>
+  <sequence>5</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:3</message>
+</record>
+<record>
+  <date>2020-10-20T10:28:59</date>
+  <millis>1603160939649</millis>
+  <sequence>6</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-10-20T10:52:37</date>
+  <millis>1603162357716</millis>
+  <sequence>0</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:39</date>
+  <millis>1603162359688</millis>
+  <sequence>1</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:41</date>
+  <millis>1603162361676</millis>
+  <sequence>2</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:43</date>
+  <millis>1603162363677</millis>
+  <sequence>3</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:3</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:45</date>
+  <millis>1603162365677</millis>
+  <sequence>4</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:47</date>
+  <millis>1603162367678</millis>
+  <sequence>5</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T10:52:49</date>
+  <millis>1603162369679</millis>
+  <sequence>6</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2020-10-20T11:14:37</date>
+  <millis>1603163677342</millis>
+  <sequence>0</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender</class>
+  <method>init</method>
+  <thread>1</thread>
+  <message>logger init</message>
+</record>
+<record>
+  <date>2020-10-20T11:14:38</date>
+  <millis>1603163678532</millis>
+  <sequence>1</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender</class>
+  <method>sendAndClear</method>
+  <thread>13</thread>
+  <message>ready to send: size: 2</message>
+</record>
+<record>
+  <date>2020-10-20T11:14:38</date>
+  <millis>1603163678574</millis>
+  <sequence>2</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:2</message>
+</record>
+<record>
+  <date>2020-10-20T11:14:40</date>
+  <millis>1603163680533</millis>
+  <sequence>3</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender</class>
+  <method>sendAndClear</method>
+  <thread>13</thread>
+  <message>ready to send: size: 1</message>
+</record>
+<record>
+  <date>2020-10-20T11:14:40</date>
+  <millis>1603163680533</millis>
+  <sequence>4</sequence>
+  <logger>default</logger>
+  <level>INFO</level>
+  <class>com.valor.mercury.sender.service.MercurySender$2</class>
+  <method>call</method>
+  <thread>13</thread>
+  <message>serverUrl:51.79.17.96:2082 send data,size:1</message>
+</record>

@@ -1,0 +1,110 @@
+[
+  {
+    "name": "BOARD",
+    "type": "keyword"
+  },
+  {
+    "name": "BOOTLOADER",
+    "type": "keyword"
+  },
+  {
+    "name": "BRAND",
+    "type": "keyword"
+  },
+  {
+    "name": "DEVICE",
+    "type": "keyword"
+  },
+  {
+    "name": "DISPLAY",
+    "type": "keyword"
+  },
+  {
+    "name": "FINGERPRINT",
+    "type": "keyword"
+  },
+  {
+    "name": "HARDWARE",
+    "type": "keyword"
+  },
+  {
+    "name": "HOST",
+    "type": "keyword"
+  },
+  {
+    "name": "ID",
+    "type": "keyword"
+  },
+  {
+    "name": "MANUFACTURER",
+    "type": "keyword"
+  },
+  {
+    "name": "MODEL",
+    "type": "keyword"
+  },
+  {
+    "name": "PRODUCT",
+    "type": "keyword"
+  },
+  {
+    "name": "SERIAL",
+    "type": "keyword"
+  },
+  {
+    "name": "TAGS",
+    "type": "keyword"
+  },
+  {
+    "name": "TYPE",
+    "type": "keyword"
+  },
+  {
+    "name": "USER",
+    "type": "keyword"
+  },
+  {
+    "name": "VERSION_CODENAME",
+    "type": "keyword"
+  },
+  {
+    "name": "VERSION_INCREMENTAL",
+    "type": "keyword"
+  },
+  {
+    "name": "VERSION_RELEASE",
+    "type": "keyword"
+  },
+  {
+    "name": "IMEI",
+    "type": "keyword"
+  },
+  {
+    "name": "AndroidID",
+    "type": "keyword"
+  },
+  {
+    "name": "EthernetMAC",
+    "type": "keyword"
+  },
+  {
+    "name": "WiFiMAC",
+    "type": "keyword"
+  },
+  {
+    "name": "FIRMWARE",
+    "type": "keyword"
+  },
+  {
+    "name": "AppVersion",
+    "type": "keyword"
+  },
+  {
+    "name": "CpuSerial",
+    "type": "keyword"
+  },
+  {
+    "name": "CpuHardware",
+    "type": "keyword"
+  }
+]

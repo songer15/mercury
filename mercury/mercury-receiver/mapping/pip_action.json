@@ -1,0 +1,30 @@
+[
+  {
+    "name": "where",
+    "type": "keyword"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "long"
+  },
+  {
+    "name": "protocol",
+    "type": "keyword"
+  },
+  {
+    "name": "ver",
+    "type": "keyword"
+  }
+]

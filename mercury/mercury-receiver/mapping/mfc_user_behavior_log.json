@@ -1,0 +1,88 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "actionType",
+    "type": "keyword"
+  },
+  {
+    "name": "actionDetail",
+    "type": "text",
+    "index": true,
+    "analyzer": "whitespace"
+  },
+  {
+    "name": "actionStatus",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "language",
+    "type": "keyword"
+  },
+  {
+    "name": "apkSource",
+    "type": "keyword"
+  },
+  {
+    "name": "device",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorId",
+    "type": "keyword"
+  },
+  {
+    "name": "appVer",
+    "type": "long"
+  },
+  {
+    "name": "clientType",
+    "type": "keyword"
+  },
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "clientRegion",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  },
+  {
+    "name": "plan",
+    "type": "keyword"
+  },
+  {
+    "name": "bizDate",
+    "type": "long"
+  }
+]

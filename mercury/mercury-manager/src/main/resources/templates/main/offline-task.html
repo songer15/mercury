@@ -1,0 +1,424 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">OffLine-Task</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">home page</a>
+          <a><cite>OffLine-Task</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="offLineTask-search-id" class="layui-input search-input" type="text" placeholder="ID"/>
+            <input id="offLineTask-search-name" class="layui-input search-input" type="text" placeholder="name"/>
+            <button id="offLineTask-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>search
+            </button>
+            <button id="offLineTask-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all</button>
+            <button id="offLineTask-btn-add" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>add</button>
+        </div>
+        <table id="offLineTask-table" lay-filter="offLineTask-table"></table>
+    </div>
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">OffLine-Task instances</h2>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="offLineTaskInstance-search-id" class="layui-input search-input" type="text" placeholder="ID"/>
+            <input id="offLineTaskInstance-search-name" class="layui-input search-input" type="text"
+                   placeholder="name"/>
+            <input id="offLineTaskInstance-search-batch" class="layui-input search-input" type="text"
+                   placeholder="batch"/>
+            <select id="offLineTaskInstance-search-status">
+                <option value="" selected>Status</option>
+                <option value="FINISH">FINISH</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="CANCELLING">CANCELLING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="WAITING">WAITING</option>
+            </select>
+            <select id="offLineTaskInstance-search-result">
+                <option value="" selected>Result</option>
+                <option value="SUCCESS">SUCCESS</option>
+                <option value="Time Out">Time Out</option>
+                <option value="Cancel&Time Out">Cancel&Time Out</option>
+                <option value="INIT">INIT</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="FAIL">FAIL</option>
+            </select>
+            <!--<input id="offLineTaskInstance-search-status" class="layui-input search-input" type="text"-->
+            <!--placeholder="status"/>-->
+            <!--<input id="offLineTaskInstance-search-result" class="layui-input search-input" type="text"-->
+            <!--placeholder="result"/>-->
+            <button id="offLineTaskInstance-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search
+            </button>
+            <button id="offLineTaskInstance-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all
+            </button>
+        </div>
+        <table id="offLineTaskInstance-table" lay-filter="offLineTaskInstance-table"></table>
+    </div>
+</div>
+<script type="text/html" id="switchEnable">
+    <input type="checkbox" name="enable" value="{{d.enable}}" lay-skin="switch" lay-text="true|false"
+           lay-filter="enable" {{ d.enable== 'on' ? 'checked' : '' }} disabled>
+</script>
+<script type="text/html" id="offLineTask-table-bar">
+    <a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="schedule">schedule</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">edit</a>
+    <a class="layui-btn layui-btn-xs" lay-event="detail">detail</a>
+    <a class="layui-btn layui-btn-xs" lay-event="run">run</a>
+    <a class="layui-btn layui-btn-xs" lay-event="stop">stop</a>
+    <a class="layui-btn layui-btn-xs" lay-event="modifyDAG">DAG</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+
+<script type="text/html" id="offLineTaskInstance-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="InstanceDetail">detail</a>
+</script>
+
+<script>
+    layui.use(['table', 'admin', 'util', 'form', 'layer'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var util = layui.util;
+        form.render("select");
+
+        //第一个实例
+        table.render({
+            elem: '#offLineTask-table',
+            url: 'offLineTask/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                {
+                    field: 'id',
+                    title: 'ID',
+                    sort: true,
+                    width:60,
+                    fixed: 'left'
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    width:160,
+                    title: 'createTime',
+                    sort: true
+                }, {
+                    field: 'status',
+                    title: 'status',
+                    width:120,
+                    sort: true
+                },  {
+                    field: 'runningBatch',
+                    title: 'runningBatch',
+                    width:150,
+                    sort: true
+                }, {
+                    field: 'enable',
+                    width:100,
+                    title: 'enable',
+                    templet: '#switchEnable',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.nextExecuteTime);
+                    },
+                    width:160,
+                    title: 'nextExecuteTime',
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#offLineTask-table-bar',
+                    title: 'operation',
+                    fixed: 'right',
+                    width: 400
+                }
+                ]
+            ]
+        });
+
+        //第二个实例
+        table.render({
+            elem: '#offLineTaskInstance-table',
+            url: 'offLineTask/listInstance' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                {
+                    field: 'id',
+                    title: 'ID',
+                    sort: true,
+                    width:100,
+                    fixed: 'left'
+                }, {
+                    field: 'name',
+                    title: 'name',
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.executeTime);
+                    },
+                    title: 'executeTime',
+                    width:160,
+                    sort: true
+                }, {
+                    field: 'status',
+                    title: 'status',
+                    width:120,
+                    sort: true
+                }, {
+                    field: 'result',
+                    title: 'result',
+                    width:100,
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        if(d.startTime)
+                            return util.toDateString(d.startTime);
+                    },
+                    title: 'startTime',
+                    width:160,
+                    sort: true
+                },  {
+                    templet: function (d) {
+                        if(d.startTime)
+                            return util.toDateString(d.endTime);
+                    },
+                    title: 'endTime',
+                    width:160,
+                    sort: true
+                }, {
+                    field: 'runningBatch',
+                    title: 'batch',
+                    width:100,
+                    sort: true
+                }, {
+                    field: 'errorMsg',
+                    title: 'errorMsg',
+                    width:100,
+                    sort: false
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    title: 'createTime',
+                    width:160,
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#offLineTaskInstance-table-bar',
+                    title: 'operation',
+                    fixed: 'right',
+                    width: 100
+                }]
+            ]
+        });
+
+        // 工具条点击事件
+        table.on('tool(offLineTask-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            }else if (layEvent === 'detail') { // 详情
+                showViewModel(data);
+            }else if (layEvent === 'modifyDAG') { //设置元任务
+              admin.putTempData('t_task', data);
+              admin.popupCenter({
+                  title: 'set up task flow chart',
+                  area: "1200px",
+                  path: 'offLineTask/editDAGForm',
+                  finish: function () {
+                      table.reload('offLineTask-table', {});
+                  }
+              });
+            } else if (layEvent === 'delete') { // 删除
+                layer.confirm('are you sure to delete this item？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineTask/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }else if(layEvent === 'run'){
+                layer.confirm('are use sure to run this task？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineTask/run', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }else if(layEvent === 'stop'){
+                layer.confirm('are you sure to stop this task？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineTask/stop', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }else if(layEvent === 'schedule'){
+                layer.confirm('are you sure to schedule this task？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineTask/schedule', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+        table.on('tool(offLineTaskInstance-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+            admin.putTempData('t_taskInstance', data);
+            admin.popupCenter({
+                title: 'detail',
+                area: "1200px",
+                path: 'offLineTask/viewInstanceForm'
+            });
+        });
+
+
+        // 添加按钮点击事件
+        $('#offLineTask-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#offLineTask-btn-search').click(function () {
+            var id = $('#offLineTask-search-id').val();
+            var name = $('#offLineTask-search-name').val();
+            table.reload('offLineTask-table', {
+                url: 'offLineTask/queryList',
+                where: {
+                    id: id,
+                    name: name
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 搜索按钮点击事件
+        $('#offLineTaskInstance-btn-search').click(function () {
+            var id = $('#offLineTaskInstance-search-id').val();
+            var name = $('#offLineTaskInstance-search-name').val();
+            var batch = $('#offLineTaskInstance-search-batch').val();
+            var status = $('#offLineTaskInstance-search-status option:selected').val();
+            var result = $('#offLineTaskInstance-search-result option:selected').val();
+            table.reload('offLineTaskInstance-table', {
+                url: 'offLineTask/queryListInstance',
+                where: {
+                    id: id,
+                    name: name,
+                    batch: batch,
+                    status: status,
+                    result: result
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#offLineTask-btn-show').click(function () {
+            table.reload('offLineTask-table', {
+                url: 'offLineTask/list'
+            });
+        });
+
+         // 展示全部按钮点击事件
+        $('#offLineTaskInstance-btn-show').click(function () {
+            table.reload('offLineTaskInstance-table', {
+                url: 'offLineTask/listInstance'
+            });
+        });
+
+        // 显示表单弹窗
+        var showEditModel = function (data) {
+            var title = data ? 'edit' : 'add';
+            admin.putTempData('t_task', data);
+            admin.popupCenter({
+                title: title,
+                area: "1000px",
+                path: 'offLineTask/editForm',
+                finish: function () {
+                    table.reload('offLineTask-table', {});
+                }
+            });
+        };
+
+         // 显示表单弹窗
+        var showViewModel = function (data) {
+            var title = 'detail ';
+            admin.putTempData('t_task', data);
+            admin.popupCenter({
+                title: title,
+                area: "1200px",
+                path: 'offLineTask/viewForm'
+            });
+        };
+    });
+
+
+</script>

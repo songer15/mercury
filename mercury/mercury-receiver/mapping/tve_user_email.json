@@ -1,0 +1,50 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "status",
+    "type": "integer"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "email_key",
+    "type": "keyword"
+  },
+  {
+    "name": "code",
+    "type": "integer"
+  },
+  {
+    "name": "code2",
+    "type": "integer"
+  },
+  {
+    "name": "code_generate_time",
+    "type": "date"
+  },
+  {
+    "name": "code_status",
+    "type": "integer"
+  },
+  {
+    "name": "code_status2",
+    "type": "integer"
+  },
+  {
+    "name": "account_id",
+    "type": "long"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  }
+]

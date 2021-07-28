@@ -1,0 +1,68 @@
+<form id="etl-dispatch_config_form_hdfs" lay-filter="etl-dispatch_config_form_hdfs" class="layui-form model-form">
+    <div class="layui-form-item">
+        <label class="layui-form-label">filePath</label>
+        <div class="layui-input-block">
+            <input name="path" placeholder="filePath" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">namedStrategy</label>
+        <div class="layui-input-block">
+            <select name="namedStrategy" lay-verify="required" required>
+                <option value="1">Hour</option>
+                <option value="2" selected>Day</option>
+                <option value="3">Week</option>
+                <option value="4">Month</option>
+                <option value="5">Quarter</option>
+                <option value="6">Year</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">replaceFilePath</label>
+        <div class="layui-input-block">
+            <input name="replacePath" placeholder="replaceFilePath" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="etl-dispatch_config_form_hdfs-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var id ='${id}';
+        var url = 'ETLTask/dispatch/editHDFSConfig';
+        var data='${config}';
+        if (data!='null') {
+            form.val('etl-dispatch_config_form_hdfs', JSON.parse(data));
+        }
+        form.render();
+
+        // 表单提交事件
+        form.on('submit(etl-dispatch_config_form_hdfs-submit)', function (data) {
+            layer.load(2);
+            $.post(url, {
+                id: id,
+                filePath: data.field.path,
+                namedStrategy: data.field.namedStrategy,
+                replacePath: data.field.replacePath
+            }, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+</script>

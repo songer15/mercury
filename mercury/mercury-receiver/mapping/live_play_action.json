@@ -1,0 +1,214 @@
+[
+  {
+    "name": "prepare_dur_ms",
+    "type": "integer"
+  },
+  {
+    "name": "play_dur",
+    "type": "integer"
+  },
+  {
+    "name": "buf_count",
+    "type": "integer"
+  },
+  {
+    "name": "std_buf_count",
+    "type": "integer"
+  },
+  {
+    "name": "buf_total_dur",
+    "type": "integer"
+  },
+  {
+    "name": "err_count",
+    "type": "integer"
+  },
+  {
+    "name": "online",
+    "type": "integer"
+  },
+  {
+    "name": "v_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "start_dur_ms",
+    "type": "long"
+  },
+  {
+    "name": "play_dur_b41stb_ms",
+    "type": "long"
+  },
+  {
+    "name": "ver",
+    "type": "keyword"
+  },
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "channel_id",
+    "type": "keyword"
+  },
+  {
+    "name": "server_id",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "keyword"
+  },
+  {
+    "name": "is_play_success",
+    "type": "boolean"
+  },
+  {
+    "name": "stream_type",
+    "type": "keyword"
+  },
+  {
+    "name": "bw_avg",
+    "type": "keyword"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "_preset_custom_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "stream_source",
+    "type": "keyword"
+  },
+  {
+    "name": "protocol",
+    "type": "keyword"
+  },
+  {
+    "name": "rtt",
+    "type": "integer"
+  },
+  {
+    "name": "min_1st_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "avg_1st_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "max_1st_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "min_1st_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "avg_1st_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "max_1st_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "max_1st_lost_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "min_2nd_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "avg_2nd_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "max_2nd_lost_slices",
+    "type": "integer"
+  },
+  {
+    "name": "min_2nd_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "avg_2nd_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "max_2nd_lost_percent",
+    "type": "integer"
+  },
+  {
+    "name": "max_2nd_lost_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "min_rsnd_rounds",
+    "type": "integer"
+  },
+  {
+    "name": "max_rsnd_rounds",
+    "type": "integer"
+  },
+  {
+    "name": "avg_rsnd_rounds",
+    "type": "integer"
+  },
+  {
+    "name": "min_rsnd_slieces",
+    "type": "integer"
+  },
+  {
+    "name": "max_rsnd_slieces",
+    "type": "integer"
+  },
+  {
+    "name": "avg_rsnd_slieces",
+    "type": "integer"
+  },
+  {
+    "name": "rsnd_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "min_rpt_slices",
+    "type": "integer"
+  },
+  {
+    "name": "max_rpt_slices",
+    "type": "integer"
+  },
+  {
+    "name": "avg_rpt_slices",
+    "type": "integer"
+  },
+  {
+    "name": "rpt_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "timeout_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "overdue_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "over_cache_grp_cnt",
+    "type": "integer"
+  },
+  {
+    "name": "grp_cnt",
+    "type": "integer"
+  }
+]

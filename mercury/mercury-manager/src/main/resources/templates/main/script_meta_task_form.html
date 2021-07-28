@@ -1,0 +1,92 @@
+<form id="script-meta-task-form" lay-filter="script-meta-task-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">name</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="name" type="text" class="layui-input" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">executor</label>
+            <div class="layui-input-block">
+                <select name="executor" xm-select="executor" xm-select-radio="executor" lay-verify="required" required>
+                    <% for(executor in executors) { %>
+                    <option value="${executor}">${executor}</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">description</label>
+        <div class="layui-input-block">
+            <textarea name="description" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">fileId</label>
+        <div class="layui-input-block">
+            <select name="fileId" lay-verify="required" required>
+                <% for(file in files) { %>
+                <option value="${file.id}">${file.fileName}</option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">incValue</label>
+        <div class="layui-input-block">
+            <input name="incValue" placeholder="IncValue" type="text" class="layui-input"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">config</label>
+        <div class="layui-input-block">
+            <textarea name="config" placeholder="" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">entryClass</label>
+        <div class="layui-input-block">
+            <input name="entryClass" placeholder="entryClass" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="script-meta-task-form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'offLineMetaTask/script/add';
+        var data='${meta_task}';
+        if (data!='null') {
+            var meta_task = JSON.parse(data);
+            form.val('script-meta-task-form', meta_task);
+            url = 'offLineMetaTask/script/edit';
+        }
+        form.render();
+
+        // 表单提交事件
+        form.on('submit(script-meta-task-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+</script>

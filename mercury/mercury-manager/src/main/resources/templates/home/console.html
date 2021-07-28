@@ -1,0 +1,577 @@
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-xs6 layui-col-md4">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                Mercury Manager status<span class="layui-badge layui-bg-blue pull-right" id="nodeStatus1">LEADER</span>
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row layui-col-space12">
+                    <div class="layui-row layui-col-space12 layui-col-md5">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #cfe2f3;">
+                                <div class="layui-card-header">
+                                    host status
+                                </div>
+                                <div class="layui-card-body">
+                                    <h1 id="nodeStatus2"></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    host number
+                                </div>
+                                <div class="layui-card-body">
+                                    <h1 id="nodeNumber"></h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space12 layui-col-md7">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    host list
+                                </div>
+                                <div class="layui-card-body">
+                                    <% for(node in nodeInfo) { %>
+                                    <h1>${node}</h1>
+                                    <hr/>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md5">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                OffLine Computation
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row layui-col-space12">
+                    <div class="layui-row layui-col-space12 layui-col-md3">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #cfe2f3;">
+                                <div class="layui-card-header">
+                                    Task
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="totalOffLineTasks"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space12 layui-col-md3">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Total Instances
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="totalOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Finished
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="finishOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space12 layui-col-md3">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Failed
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="failOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Running
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="runningOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space12 layui-col-md3">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Cancel Timeout
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="cancelOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Lining
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="initOffLineTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                RealTime Computation
+            </div>
+            <div class="layui-card-body">
+                <div class="layui-row layui-col-space12">
+                    <div class="layui-row layui-col-space12 layui-col-md6">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #cfe2f3;">
+                                <div class="layui-card-header">
+                                    Task Number
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="totalRealTimeTasks"></p>
+                                </div>
+                            </div>
+                            <div class="layui-col-md12">
+                                <div class="layui-card" style="background-color: #C9C5C5;">
+                                    <div class="layui-card-header">
+                                        Running
+                                    </div>
+                                    <div class="layui-card-body">
+                                        <p class="lay-big-font" id="runningRealTimeTaskInstances"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-row layui-col-space12 layui-col-md6">
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Waitting
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="initRealTimeTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card" style="background-color: #C9C5C5;">
+                                <div class="layui-card-header">
+                                    Fail
+                                </div>
+                                <div class="layui-card-body">
+                                    <p class="lay-big-font" id="finishRealTimeTaskInstances"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">HDFS</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="hdfsStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="hdfsEnable"></span></p>
+                <p>liveNodes<span class="layui-badge pull-right layui-bg-cyan" id="hdfsLiveNodes"></span></p>
+                <p>totalBlocks<span class="layui-badge pull-right layui-bg-cyan" id="hdfsTotalBlocks"></span></p>
+                <p>used<span class="layui-badge pull-right layui-bg-cyan" id="hdfsUsed"></span></p>
+                <p>free<span class="layui-badge pull-right layui-bg-cyan" id="hdfsFree"></span></p>
+                <p>total<span class="layui-badge pull-right layui-bg-cyan" id="hdfsTotal"></span></p>
+                <p>threads<span class="layui-badge pull-right layui-bg-cyan" id="hdfsThreads"></span></p>
+                <p>missingBlocks<span class="layui-badge pull-right layui-bg-cyan" id="hdfsMissingBlocks"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="hdfsActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">Yarn</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="yarnStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="yarnEnable"></span></p>
+                <p>nodeNumber<span class="layui-badge pull-right layui-bg-cyan" id="yarnNodeNumber"></span></p>
+                <p>runningJobs<span class="layui-badge pull-right layui-bg-cyan" id="yarnRunningJobs"></span></p>
+                <p>appsSubmitted<span class="layui-badge pull-right layui-bg-cyan" id="yarnAppsSubmitted"></span></p>
+                <p>activeNodes<span class="layui-badge pull-right layui-bg-cyan" id="yarnActiveNodes"></span></p>
+                <p>availableVirtualCores<span class="layui-badge pull-right layui-bg-cyan"
+                                              id="yarnAvailableVirtualCores"></span></p>
+                <p>availableMB<span class="layui-badge pull-right layui-bg-cyan" id="yarnAvailableMB"></span></p>
+                <p>containersAllocated<span class="layui-badge pull-right layui-bg-cyan"
+                                            id="yarnContainersAllocated"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="yarnActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">Flink</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="flinkStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="flinkEnable"></span></p>
+                <p>nodeNumber<span class="layui-badge pull-right layui-bg-cyan" id="flinkNodeNumber"></span></p>
+                <p>runningJobs<span class="layui-badge pull-right layui-bg-cyan" id="flinkRunningJobs"></span></p>
+                <p>memoryUsed<span class="layui-badge pull-right layui-bg-cyan" id="flinkMemoryUsed"></span></p>
+                <p>taskSlotsTotal<span class="layui-badge pull-right layui-bg-cyan" id="flinkTaskSlotsTotal"></span></p>
+                <p>numRegisteredTaskManagers<span class="layui-badge pull-right layui-bg-cyan"
+                                                  id="flinkNumRegisteredTaskManagers"></span></p>
+                <p>memoryMax<span class="layui-badge pull-right layui-bg-cyan" id="flinkMemoryMax"></span></p>
+                <p>taskSlotsAvailable<span class="layui-badge pull-right layui-bg-cyan"
+                                           id="flinkTaskSlotsAvailable"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="flinkActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">Elastic Search</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="elasticsearchStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="elasticsearchEnable"></span></p>
+                <p>nodeNumber<span class="layui-badge pull-right layui-bg-cyan" id="elasticsearchNodeNumber"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="elasticsearchActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">Kafka</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="kafkaStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="kafkaEnable"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="kafkaActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md2">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">Hive</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="hiveStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="hiveEnable"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="hiveActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="layui-col-xs6 layui-col-md6">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <span class="layui-badge layui-bg-blue pull-left">InfluxDB</span>
+            </div>
+            <div class="layui-card-body">
+                <p>status<span class="layui-badge pull-right layui-bg-cyan" id="influxDBStatus"></span>
+                </p>
+                <p>enable<span class="layui-badge pull-right layui-bg-cyan" id="influxDBEnable"></span></p>
+                <p>actionTime<span class="layui-badge pull-right layui-bg-cyan" id="influxDBActionTime"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row layui-col-space15">
+    <div class="layui-col-lg8 layui-col-md7">
+        <div class="layui-card">
+            <div class="layui-card-header">ETL Last 24h</div>
+            <div class="layui-card-body">
+                <div class="layui-row grid-demo">
+                    <div class="layui-col-md9">
+                        <div id="chartMain" style="height:500px;"></div>
+                    </div>
+                    <div class="layui-col-md3">
+                        <fieldset class="layui-elem-field">
+                            <legend>Receive Num</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="receiveNum"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="layui-col-md3">
+                        <fieldset class="layui-elem-field">
+                            <legend>Send Num</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="sendNum"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-lg4 layui-col-md5">
+        <div class="layui-card">
+            <div class="layui-card-header">Executor Status</div>
+            <div class="layui-card-body">
+                <div class="layui-row grid-demo">
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field">
+                            <legend>working</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="workingExecutors"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field">
+                            <legend>waiting</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="waitingExecutors"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field">
+                            <legend>disconnected</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="disconnectedExecutors"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="layui-col-md6">
+                        <fieldset class="layui-elem-field">
+                            <legend>init</legend>
+                            <div class="layui-field-box">
+                                <p class="lay-big-font" id="initExecutors"></p>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card">
+            <div class="layui-card-header">Error Report</div>
+            <div class="layui-card-body">
+                <table id="error_report-table" lay-filter="error_report-table"></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#nodeStatus1").html('${nodeStatus}');
+    $("#nodeStatus2").html('${nodeStatus}');
+    $("#nodeNumber").html('${nodeNumber}');
+
+    $("#totalOffLineTasks").html('${totalOffLineTasks}');
+    $("#totalOffLineTaskInstances").html('${totalOffLineTaskInstances}');
+    $("#finishOffLineTaskInstances").html('${finishOffLineTaskInstances}');
+    $("#runningOffLineTaskInstances").html('${runningOffLineTaskInstances}');
+    $("#failOffLineTaskInstances").html('${failOffLineTaskInstances}');
+    $("#initOffLineTaskInstances").html('${initOffLineTaskInstances}');
+    $("#cancelOffLineTaskInstances").html('${cancelOffLineTaskInstances}');
+
+    $("#totalRealTimeTasks").html('${totalRealTimeTasks}');
+    $("#runningRealTimeTaskInstances").html('${runningRealTimeTaskInstances}');
+    $("#finishRealTimeTaskInstances").html('${finishRealTimeTaskInstances}');
+    $("#initRealTimeTaskInstances").html('${initRealTimeTaskInstances}');
+
+
+    $("#receiveNum").html('${receiveNum}');
+    $("#sendNum").html('${sendNum}');
+
+    $("#workingExecutors").html('${workingExecutors}');
+    $("#waitingExecutors").html('${waitingExecutors}');
+    $("#disconnectedExecutors").html('${disconnectedExecutors}');
+    $("#initExecutors").html('${initExecutors}');
+
+
+    $("#hdfsLiveNodes").html('${hdfsLiveNodes}');
+    $("#hdfsTotalBlocks").html('${hdfsTotalBlocks}');
+    $("#hdfsUsed").html('${hdfsUsed}');
+    $("#hdfsFree").html('${hdfsFree}');
+    $("#hdfsThreads").html('${hdfsThreads}');
+    $("#hdfsTotal").html('${hdfsTotal}');
+    $("#hdfsMissingBlocks").html('${hdfsMissingBlocks}');
+    $("#hdfsActionTime").html('${hdfsActionTime}');
+    $("#hdfsEnable").html('${hdfsEnable}');
+    $("#hdfsStatus").html('${hdfsStatus}');
+
+    $("#flinkRunningJobs").html('${flinkRunningJobs}');
+    $("#flinkTaskSlotsAvailable").html('${flinkTaskSlotsAvailable}');
+    $("#flinkNodeNumber").html('${flinkNodeNumber}');
+    $("#flinkMemoryUsed").html('${flinkMemoryUsed}');
+    $("#flinkTaskSlotsTotal").html('${flinkTaskSlotsTotal}');
+    $("#flinkMemoryMax").html('${flinkMemoryMax}');
+    $("#flinkStatus").html('${flinkStatus}');
+    $("#flinkActionTime").html('${flinkActionTime}');
+    $("#flinkEnable").html('${flinkEnable}');
+
+    $("#yarnRunningJobs").html('${yarnRunningJobs}');
+    $("#yarnAppsSubmitted").html('${yarnAppsSubmitted}');
+    $("#yarnNodeNumber").html('${yarnNodeNumber}');
+    $("#yarnActiveNodes").html('${yarnActiveNodes}');
+    $("#yarnAvailableVirtualCores").html('${yarnAvailableVirtualCores}');
+    $("#yarnAvailableMB").html('${yarnAvailableMB}');
+    $("#yarnContainersAllocated").html('${yarnContainersAllocated}');
+    $("#yarnStatus").html('${yarnStatus}');
+    $("#yarnActionTime").html('${yarnActionTime}');
+    $("#yarnEnable").html('${yarnEnable}');
+
+    $("#kafkaStatus").html('${kafkaStatus}');
+    $("#kafkaActionTime").html('${kafkaActionTime}');
+    $("#kafkaEnable").html('${kafkaEnable}');
+
+    $("#elasticsearchNodeNumber").html('${elasticsearchNodeNumber}');
+    $("#elasticsearchStatus").html('${elasticsearchStatus}');
+    $("#elasticsearchActionTime").html('${elasticsearchActionTime}');
+    $("#elasticsearchEnable").html('${elasticsearchEnable}');
+
+    $("#hiveStatus").html('${hiveStatus}');
+    $("#hiveActionTime").html('${hiveActionTime}');
+    $("#hiveEnable").html('${hiveEnable}');
+
+    $("#influxDBStatus").html('${influxDBStatus}');
+    $("#influxDBActionTime").html('${influxDBActionTime}');
+    $("#influxDBEnable").html('${influxDBEnable}');
+
+    layui.use(['table','util'], function () {
+        var table = layui.table;
+        var util = layui.util;
+        table.render({
+            elem: '#error_report-table',
+            url: '/log/listTop',
+            cols: [[
+                {
+                    field: 'id',
+                    title: 'ID',
+                    sort: true,
+                    width:60,
+                    fixed: 'left'
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    title: 'createTime',
+                    sort: true
+                },{
+                    field: 'source',
+                    width:160,
+                    title: 'source',
+                    sort: true
+                },{
+                    field: 'targetObject',
+                    title: 'targetObject',
+                    width:120,
+                    sort: true
+                }
+            ]]
+        });
+     });
+
+    var xSerials=new Array();
+    var y1Serials=new Array();
+    var y2Serials=new Array();
+    <% for(value in xSerial) { %>
+        xSerials.push('${value}');
+    <% } %>
+    <% for(value in y1Serial) { %>
+        y1Serials.push(${value});
+    <% } %>
+    <% for(value in y2Serial) { %>
+        y2Serials.push(${value});
+    <% } %>
+	option = {
+		title: {
+			text: 'Data Flow'
+		},
+		tooltip: {
+			trigger: 'axis',
+			axisPointer: {
+				type: 'cross',
+				label: {
+					backgroundColor: '#6a7985'
+				}
+			}
+		},
+		legend: {
+			data: ['DataReceive', 'DataSend']
+		},
+		grid: {
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true
+		},
+		xAxis: [{
+			type: 'category',
+			boundaryGap: true,
+			data: xSerials,
+			axisPointer: {
+	             type: 'shadow'
+	        }
+		}],
+		yAxis: [{
+				type: 'value',
+				name: 'DataReceive'
+			},
+			{
+				type: 'value',
+				name: 'DataSend'
+			}
+		],
+		series: [{
+			name: 'DataReceive',
+			type: 'line',
+			stack: 'Total',
+			areaStyle: {},
+			data: y1Serials
+		}, {
+			name: 'DataSend',
+			type: 'bar',
+			stack: 'Total',
+			yAxisIndex: 1,
+			areaStyle: {},
+			data: y2Serials
+		}]
+	};
+	var myChart = echarts.init(document.getElementById('chartMain'));
+	myChart.setOption(option);
+
+</script>

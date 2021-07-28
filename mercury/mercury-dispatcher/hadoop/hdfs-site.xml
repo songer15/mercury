@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+    <property>
+        <name>dfs.webhdfs.enable</name>
+        <value>true</value>
+    </property>
+    <!-- 指定HDFS副本的数量 -->
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+    <property>
+        <name>dfs.name.dir</name>
+        <value>/home/valor/hadoop-3.2.1/hdfs/name</value>
+    </property>
+    <property>
+        <name>dfs.data.dir</name>
+        <value>/home/valor/hadoop-3.2.1/hdfs/data,/disk1/data,/disk2/data</value>
+    </property>
+    <!--HA配置 -->
+    <property>
+        <name>dfs.nameservices</name>
+        <value>mycluster</value>
+    </property>
+    <property>
+        <name>dfs.ha.namenodes.mycluster</name>
+        <value>nn1,nn2</value>
+    </property>
+    <!--namenode1 RPC端口 -->
+    <property>
+        <name>dfs.namenode.rpc-address.mycluster.nn1</name>
+        <value>hadoop01:9000</value>
+    </property>
+    <!--namenode1 HTTP端口 -->
+    <property>
+        <name>dfs.namenode.http-address.mycluster.nn1</name>
+        <value>hadoop01:50070</value>
+    </property>
+    <!--namenode2 RPC端口 -->
+    <property>
+        <name>dfs.namenode.rpc-address.mycluster.nn2</name>
+        <value>hadoop02:9000</value>
+    </property>
+    <!--namenode1 HTTP端口 -->
+    <property>
+        <name>dfs.namenode.http-address.mycluster.nn2</name>
+        <value>hadoop02:50070</value>
+    </property>
+    <!--HA故障切换 -->
+    <property>
+        <name>dfs.ha.automatic-failover.enabled.mycluster</name>
+        <value>true</value>
+    </property>
+    <!-- journalnode 配置 -->
+    <property>
+        <name>dfs.namenode.shared.edits.dir</name>
+        <value>qjournal://hadoop01:8485;hadoop02:8485;hadoop03:8485;hadoop04:8485;hadoop05:8485/mycluster</value>
+    </property>
+    <property>
+        <name>dfs.client.failover.proxy.provider.mycluster</name>
+        <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
+    </property>
+    <!--发生failover时，Standby的节点要执行一系列方法把原来那个Active节点中不健康的NameNode服务给杀掉，
+ 这个叫做fence过程。sshfence会通过ssh远程调用fuser命令去找到Active节点的NameNode服务并杀死它-->
+    <property>
+        <name>dfs.ha.fencing.methods</name>
+        <value>shell(/bin/true)</value>
+    </property>
+    <!--SSH私钥 -->
+    <property>
+        <name>dfs.ha.fencing.ssh.private-key-files</name>
+        <value>/home/valor/.ssh/id_rsa</value>
+    </property>
+    <!--SSH超时时间 -->
+    <property>
+        <name>dfs.ha.fencing.ssh.connect-timeout</name>
+        <value>30000</value>
+    </property>
+    <!--Journal Node文件存储地址 -->
+    <property>
+        <name>dfs.journalnode.edits.dir</name>
+        <value>/home/valor/hadoop-3.2.1/tmp/journal</value>
+    </property>
+</configuration>

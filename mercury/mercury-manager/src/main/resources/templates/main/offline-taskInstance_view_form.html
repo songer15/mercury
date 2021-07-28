@@ -1,0 +1,94 @@
+<div class='layui-container'>
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>OffLine-MetaTask instances</legend>
+    </fieldset>
+    <table id="offLineMetaTaskInstances-table" lay-filter="offLineMetaTaskInstances-table"></table>
+</div>
+<script type="text/html" id="offLineTaskInstances-view-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="cancel">cancel</a>
+</script>
+<script>
+    layui.use(['layer', 'admin', 'util','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var table = layui.table;
+        var util = layui.util;
+
+        var offLineTask = admin.getTempData('t_taskInstance');
+
+        table.render({
+               elem: '#offLineMetaTaskInstances-table',
+               url: 'offLineMetaTask/listMetaInstances?id='+offLineTask.id, //数据接口
+               page: true, //开启分页
+               cols: [
+                   [ //表头
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width:60,
+                        fixed: 'left'
+                    }, {
+                    field: 'name',
+                    title: 'name',
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    title: 'createTime'
+                },{
+                    field: 'status',
+                    title: 'status',
+                    sort: true
+                }, {
+                    field: 'primaryValue',
+                    title: 'primaryValue',
+                    sort: true
+                }, {
+                    field: 'executor',
+                    title: 'executor',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.executeTime);
+                    },
+                    title: 'executeTime',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.startTime);
+                    },
+                    title: 'startTime',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.endTime);
+                    },
+                    title: 'endTime',
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.lastActionTime);
+                    },
+                    title: 'lastActionTime',
+                    sort: true
+                },{
+                    field: 'result',
+                    title: 'result',
+                    sort: true
+                },{
+                    field: 'metrics',
+                    title: 'metrics',
+                    sort: true
+                },{
+                    field: 'runningBatch',
+                    title: 'runningBatch',
+                    sort: true
+                }
+                ]
+               ]
+        });
+    });
+
+</script>

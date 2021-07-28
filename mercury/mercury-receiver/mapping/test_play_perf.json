@@ -1,0 +1,54 @@
+[
+  {
+    "name": "media_id",
+    "type": "keyword"
+  },
+  {
+    "name": "season_id",
+    "type": "keyword"
+  },
+  {
+    "name": "episode_id",
+    "type": "keyword"
+  },
+  {
+    "name": "media_type",
+    "type": "keyword"
+  },
+  {
+    "name": "cloud_type",
+    "type": "keyword"
+  },
+  {
+    "name": "could_acct",
+    "type": "keyword"
+  },
+  {
+    "name": "total_dur",
+    "type": "keyword"
+  },
+  {
+    "name": "play_dur",
+    "type": "keyword"
+  },
+  {
+    "name": "url_dur",
+    "type": "keyword"
+  },
+  {
+    "name": "preload_dur",
+    "type": "keyword"
+  },
+  {
+    "name": "bw_avg",
+    "type": "keyword"
+  },
+  {
+    "name": "str_f1",
+    "type": "keyword"
+  },
+  {
+    "name": "bool_f2",
+    "type": "keyword"
+  }
+]

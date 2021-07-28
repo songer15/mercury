@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+group 'com.valor'
+version '1.5-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+configurations {
+    deployerJars
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.valor.mercury.script.MainEntry'
+    }
+}
+
+dependencies {
+    compile project(":mercury-common")
+    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    compile 'org.codehaus.groovy:groovy:2.3.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    
+    //Elasticsearch
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.3.1'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '6.3.1'
+    implementation group: 'org.elasticsearch.client', name: 'transport', version: '6.3.1'
+
+    //Hadoop
+    implementation group: 'org.apache.hadoop', name: 'hadoop-common', version: '3.2.1'
+    implementation group: 'org.apache.hadoop', name: 'hadoop-client', version: '3.2.1'
+}

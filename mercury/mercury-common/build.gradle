@@ -1,0 +1,74 @@
+plugins {
+    id 'java'
+}
+
+group 'com.valor'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files("libs/mfc-config-tools-2.0.2.jar")
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.47'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.7'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    //hibernate
+    implementation group: 'org.springframework', name: 'spring-orm', version:'5.1.2.RELEASE'
+    implementation group: 'commons-dbcp', name: 'commons-dbcp', version:'1.4'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version:'5.1.2.Final'
+    implementation group: 'javax.validation', name: 'validation-api', version:'2.0.1.Final'
+    //mysql
+    implementation 'mysql:mysql-connector-java:5.1.47'
+    //jackson
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.7'
+    //Elasticsearch
+    compile (group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.3.1')
+    compile (group: 'org.elasticsearch', name: 'elasticsearch-x-content', version: '6.3.1')
+    compile ('org.elasticsearch:elasticsearch:6.3.1')
+    //Hadoop
+    implementation ('org.apache.hadoop:hadoop-common:3.2.1') {
+        exclude group: 'javax.servlet', module: '*'
+    }
+    implementation ('org.apache.hadoop:hadoop-client:3.2.1') {
+        exclude group: 'javax.servlet', module: '*'
+    }
+
+    //Hive
+//    implementation group: 'org.apache.hive', name: 'hive-exec', version: '3.1.0'
+//    implementation('org.apache.hive:hive-jdbc:3.1.0') {
+//        exclude group: 'org.eclipse.jetty', module: '*'
+//        exclude group: 'tomcat', module: '*'
+//        exclude group: 'javax.servlet', module: '*'
+//    }
+
+//    implementation group: 'org.apache.hive', name: 'hive-exec', version: '3.1.0'
+//    compile group: 'org.apache.hive', name: 'hive-jdbc', version: '3.1.0'
+    //influxdb
+    implementation 'org.influxdb:influxdb-java:2.5'
+    //kafka
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.0.0'
+    //CronUtils
+    implementation group:'com.cronutils',name:'cron-utils',version: '8.0.0'
+    //ConfigTool
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.10'
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'com.google.guava:guava:21.0'
+    implementation 'com.google.code.gson:gson:2.6.2'
+    //Ip解析为经纬度数据
+    implementation group: 'com.maxmind.geoip2', name: 'geoip2', version: '2.12.0'
+    implementation 'com.github.davidmoten:geo:0.7.1'
+}
+
+//configurations.all{
+//    resolveStrategy {
+//        force 'com'
+//    }
+//}

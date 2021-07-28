@@ -1,0 +1,34 @@
+[
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "register_release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "register_email",
+    "type": "keyword"
+  },
+  {
+    "name": "register_account_id",
+    "type": "long"
+  },
+  {
+    "name": "register_ts",
+    "type": "date"
+  },
+  {
+    "name": "register_source",
+    "type": "keyword"
+  },
+  {
+    "name": "update_time",
+    "type": "date"
+  },
+  {
+    "name": "create_time",
+    "type": "date"
+  }
+]

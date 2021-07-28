@@ -1,0 +1,98 @@
+[
+  {
+    "name": "appVersion",
+    "type": "keyword"
+  },
+  {
+    "name": "loginId",
+    "type": "keyword"
+  },
+  {
+    "name": "duid",
+    "type": "keyword"
+  },
+  {
+    "name": "lastActionTime",
+    "type": "date"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "clientRegion",
+    "type": "keyword"
+  },
+  {
+    "name": "releaseId",
+    "type": "keyword"
+  },
+  {
+    "name": "appId",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "id",
+    "type": "long"
+  },
+  {
+    "name": "actionDetail",
+    "type": "keyword"
+  },
+  {
+    "name": "proxyIp",
+    "type": "keyword"
+  },
+  {
+    "name": "loginMethod",
+    "type": "keyword"
+  },
+  {
+    "name": "updateTime",
+    "type": "date"
+  },
+  {
+    "name": "versionCode",
+    "type": "integer"
+  },
+  {
+    "name": "deviceFactor3",
+    "type": "keyword"
+  },
+  {
+    "name": "accountId",
+    "type": "long"
+  },
+  {
+    "name": "deviceFactor2",
+    "type": "keyword"
+  },
+  {
+    "name": "deviceFactor1",
+    "type": "keyword"
+  },
+  {
+    "name": "createTime",
+    "type": "date"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "deviceModel",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  }
+]

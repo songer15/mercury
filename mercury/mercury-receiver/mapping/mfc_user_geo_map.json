@@ -1,0 +1,26 @@
+[
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "email",
+    "type": "keyword"
+  },
+  {
+    "name": "CityName",
+    "type": "keyword"
+  },
+  {
+    "name": "IP",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "createTime",
+    "type": "date"
+  }
+]

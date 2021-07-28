@@ -1,0 +1,143 @@
+<form id="spider-meta-offLineTask-form" lay-filter="spider-meta-offLineTask-form" class="layui-form model-form">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">name</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="name" type="text" class="layui-input" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">executor</label>
+            <div class="layui-input-block">
+                <select name="executor" lay-verify="required" required>
+                    <% for(executor in executors) { %>
+                    <option value="${executor}">${executor}</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">outputName</label>
+        <div class="layui-input-block">
+            <select name="outPutName" lay-verify="required" required>
+                <% for(receiver in receivers) { %>
+                <option value="${receiver}">${receiver}</option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">description</label>
+        <div class="layui-input-block">
+            <textarea name="description" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Reader</label>
+        <div class="layui-input-block">
+            <select name="reader" lay-verify="required" required>
+                <option value="numberIncPageItemReader">NumberIncPageItemReader</option>
+                <option value="timeIncPageItemReader">TimeIncPageItemReader</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">Processor</label>
+        <div class="layui-input-block">
+            <select name="processor" lay-verify="required" required>
+                <option value="defaultItemProcessor">DefaultItemProcessor</option>
+                <option value="IDIncItemProcessor">IDIncItemProcessor</option>
+                <option value="timeIncItemProcessor">TimeIncItemProcessor</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">Listener</label>
+            <div class="layui-input-block">
+                <select name="listener" lay-verify="required" required>
+                    <option value="incJobListener">IncJobListener</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">incTag</label>
+            <div class="layui-input-block">
+                <input name="incTag" placeholder="IncTag" type="text" class="layui-input" lay-verify="required" required/>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">incValue</label>
+        <div class="layui-input-block">
+            <input name="incValue" placeholder="incValue" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">SQL</label>
+        <div class="layui-input-block">
+            <textarea name="sql" class="layui-textarea" lay-verify="required" required></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">database</label>
+            <div class="layui-input-block">
+                <select name="database" lay-verify="required" required>
+                    <% for(database in databases) { %>
+                    <option value="${database}">${database}</option>
+                    <% } %>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">pageSize</label>
+            <div class="layui-input-block">
+                <input name="pageSize" placeholder="PageSize" value="10000" type="text" class="layui-input" lay-verify="required" required/>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="spider-meta-offLineTask-form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var formSelects = layui.formSelects;
+        var admin = layui.admin;
+
+        var url = 'offLineMetaTask/spider/add';
+        var data='${meta_task}';
+        if (data!='null') {
+            var meta_task = JSON.parse(data);
+            url = 'offLineMetaTask/spider/edit';
+            form.val('spider-meta-offLineTask-form', meta_task);
+        }
+
+        form.render();
+        // 表单提交事件
+        form.on('submit(spider-meta-offLineTask-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+
+
+
+
+</script>

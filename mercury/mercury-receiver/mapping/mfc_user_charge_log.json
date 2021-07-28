@@ -1,0 +1,62 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "actionType",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "keyword"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "chargeCardId",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "cardType",
+    "type": "keyword"
+  },
+  {
+    "name": "feeType",
+    "type": "keyword"
+  },
+  {
+    "name": "bizType",
+    "type": "keyword"
+  },
+  {
+    "name": "bizValue",
+    "type": "long"
+  },
+  {
+    "name": "expireTs",
+    "type": "long"
+  },
+  {
+    "name": "appVer",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "vendorId",
+    "type": "keyword"
+  },
+  {
+    "name": "customIp",
+    "type": "keyword"
+  }
+]

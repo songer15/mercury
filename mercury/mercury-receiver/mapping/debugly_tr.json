@@ -1,0 +1,118 @@
+[
+  {
+    "name": "ID",
+    "type": "keyword"
+  },
+  {
+    "name": "pid",
+    "type": "integer"
+  },
+  {
+    "name": "startTs",
+    "type": "date"
+  },
+  {
+    "name": "exitTs",
+    "type": "date"
+  },
+  {
+    "name": "startTime",
+    "type": "date"
+  },
+  {
+    "name": "exitTime",
+    "type": "date"
+  },
+  {
+    "name": "runDuration",
+    "type": "long"
+  },
+  {
+    "name": "runDurationDesc",
+    "type": "keyword"
+  },
+  {
+    "name": "activityLogs",
+    "type": "text"
+  },
+  {
+    "name": "playActionLogs",
+    "type": "text"
+  },
+  {
+    "name": "mainMetrics",
+    "type": "keyword"
+  },
+  {
+    "name": "isForeground",
+    "type": "boolean"
+  },
+  {
+    "name": "backgroundDuration",
+    "type": "long"
+  },
+  {
+    "name": "backgroundTimes",
+    "type": "long"
+  },
+  {
+    "name": "lasBackgroundTime",
+    "type": "date"
+  },
+  {
+    "name": "processState",
+    "type": "int"
+  },
+  {
+    "name": "isActivityLogLost",
+    "type": "boolean"
+  },
+  {
+    "name": "activityLogLostNum",
+    "type": "int"
+  },
+  {
+    "name": "crashTime",
+    "type": "date"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "brand",
+    "type": "keyword"
+  },
+  {
+    "name": "model",
+    "type": "keyword"
+  },
+  {
+    "name": "fingerprint",
+    "type": "keyword"
+  },
+  {
+    "name": "user",
+    "type": "keyword"
+  },
+  {
+    "name": "host",
+    "type": "keyword"
+  },
+  {
+    "name": "verCode",
+    "type": "keyword"
+  },
+  {
+    "name": "packageName",
+    "type": "keyword"
+  },
+  {
+    "name": "releaseId",
+    "type": "keyword"
+  },
+  {
+    "name": "uptime",
+    "type": "long"
+  }
+]

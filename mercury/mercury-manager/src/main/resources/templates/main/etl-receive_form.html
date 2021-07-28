@@ -1,0 +1,67 @@
+<form id="etl-receive-form" lay-filter="etl-receive-form" class="layui-form model-form">
+    <input name="id" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">receiveName</label>
+        <div class="layui-input-block">
+            <input name="receiveName" placeholder="name" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">receiveNum</label>
+        <div class="layui-input-block">
+            <input name="receiveNum" type="text" value="0" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">forwardNum</label>
+        <div class="layui-input-block">
+            <input name="forwardNum" type="text" value="0" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">enable</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" lay-verify="required" name="enable" lay-skin="switch" lay-filter="enable" lay-text="true|false">
+        </div>
+    </div>
+    <div class="layui-form-item model-form-footer">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+        <button class="layui-btn" lay-filter="etl-receive-form-submit" lay-submit>save</button>
+    </div>
+</form>
+
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'ETLTask/receive/add';
+        var etl_receive = admin.getTempData('t_etl-receive');
+        if (etl_receive) {
+            url = 'ETLTask/receive/edit';
+            form.val('etl-receive-form', etl_receive);
+        }
+
+        form.render();
+        // 表单提交事件
+        form.on('submit(etl-receive-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+    });
+
+
+
+
+</script>

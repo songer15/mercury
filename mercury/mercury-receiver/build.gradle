@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.valor'
+version '0.4.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.valor.mercury.receiver.ReceiverApplication'
+    }
+}
+dependencies {
+    implementation project(":mercury-common")
+    //spring boot
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+        exclude module: 'spring-boot-starter-jetty'
+    }
+
+    implementation ('org.springframework.boot:spring-boot-starter-undertow')
+//    im group: 'org.hibernate', name: 'hibernate-core', version:'5.1.2.Final'
+
+    implementation group: 'org.apache.kafka', name: 'kafka-clients', version: '2.0.0'
+
+    //aop
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+}
+
+configurations {
+    //排除hadoop依赖下的jetty
+    compile.exclude group: "org.eclipse.jetty"
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+    compile.exclude group: "org.apache.logging.log4j", module: "log4j-slf4j-impl"
+}

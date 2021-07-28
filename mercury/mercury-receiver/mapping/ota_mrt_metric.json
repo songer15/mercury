@@ -1,0 +1,10 @@
+[
+  {
+    "name": "message",
+    "type": "keyword"
+  },
+  {
+    "name": "deviceInfo",
+    "type": "keyword"
+  }
+]

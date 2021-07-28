@@ -1,0 +1,118 @@
+[
+  {
+    "name": "android_version",
+    "type": "keyword"
+  },
+  {
+    "name": "sdk",
+    "type": "keyword"
+  },
+  {
+    "name": "brand",
+    "type": "keyword"
+  },
+  {
+    "name": "model",
+    "type": "keyword"
+  },
+  {
+    "name": "board",
+    "type": "keyword"
+  },
+  {
+    "name": "device",
+    "type": "keyword"
+  },
+  {
+    "name": "manufacturer",
+    "type": "keyword"
+  },
+  {
+    "name": "fingerprint",
+    "type": "keyword"
+  },
+  {
+    "name": "display",
+    "type": "keyword"
+  },
+  {
+    "name": "build_type",
+    "type": "keyword"
+  },
+  {
+    "name": "user",
+    "type": "keyword"
+  },
+  {
+    "name": "host",
+    "type": "keyword"
+  },
+  {
+    "name": "build_utc",
+    "type": "keyword"
+  },
+  {
+    "name": "tags",
+    "type": "keyword"
+  },
+  {
+    "name": "build_id",
+    "type": "keyword"
+  },
+  {
+    "name": "hardware",
+    "type": "keyword"
+  },
+  {
+    "name": "bootloader",
+    "type": "keyword"
+  },
+  {
+    "name": "e_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "w_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "b_mac",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_hardware",
+    "type": "keyword"
+  },
+  {
+    "name": "cpu_serial",
+    "type": "keyword"
+  },
+  {
+    "name": "ram_size",
+    "type": "keyword"
+  },
+  {
+    "name": "rom_size",
+    "type": "keyword"
+  },
+  {
+    "name": "cpuinfo",
+    "type": "keyword"
+  },
+  {
+    "name": "imei",
+    "type": "keyword"
+  },
+  {
+    "name": "android_id",
+    "type": "keyword"
+  },
+  {
+    "name": "release_id",
+    "type": "keyword"
+  },
+  {
+    "name": "_preset_custom_ip",
+    "type": "keyword"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "name": "chanId",
+    "type": "keyword"
+  },
+  {
+    "name": "vod",
+    "type": "keyword"
+  },
+  {
+    "name": "fileType",
+    "type": "keyword"
+  },
+  {
+    "name": "subFileType",
+    "type": "keyword"
+  },
+  {
+    "name": "ptl",
+    "type": "keyword"
+  },
+  {
+    "name": "ptlImpl",
+    "type": "keyword"
+  },
+  {
+    "name": "fccs",
+    "type": "keyword"
+  },
+  {
+    "name": "ftds",
+    "type": "keyword"
+  },
+  {
+    "name": "props",
+    "type": "keyword"
+  },
+  {
+    "name": "fromDevice",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "_preset_custom_ip",
+    "type": "keyword"
+  }
+]

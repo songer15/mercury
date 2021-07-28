@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Location",
+    "type": "geo_point"
+  },
+  {
+    "name": "CityName",
+    "type": "text",
+    "index": true,
+    "analyzer": "whitespace"
+  },
+  {
+    "name": "StateCode",
+    "type": "keyword"
+  },
+  {
+    "name": "CountryCode",
+    "type": "keyword"
+  },
+  {
+    "name": "AutonomousSystemNumber",
+    "type": "long"
+  },
+  {
+    "name": "AutonomousSystemOrganization",
+    "type": "keyword"
+  },
+  {
+    "name": "GeoHash",
+    "type": "keyword"
+  }
+]

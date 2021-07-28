@@ -1,0 +1,373 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Script</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">home page</a>
+          <a><cite>Script</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="script-offLineMetaTask-search-id" class="layui-input search-input" type="text" placeholder="ID"/>
+            <input id="script-offLineMetaTask-search-name" class="layui-input search-input" type="text"
+                   placeholder="name"/>
+            <!--<input id="script-offLineMetaTask-search-taskExecutor" class="layui-input search-input" type="text"-->
+                   <!--placeholder="taskExecutor"/>-->
+            <select id="script-offLineMetaTask-search-taskExecutor">
+                <option value="" selected>Executor</option>
+                <% for(executor in executors) { %>
+                <option value="${executor}">${executor}</option>
+                <% } %>
+            </select>
+            <input id="script-offLineMetaTask-search-config" class="layui-input search-input" type="text"
+                   placeholder="config"/>
+            <button id="script-offLineMetaTask-btn-search" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>search
+            </button>
+            <button id="script-offLineMetaTask-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all
+            </button>
+            <button id="script-offLineMetaTask-btn-add" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>add
+            </button>
+        </div>
+        <table id="script-offLineMetaTask-table" lay-filter="script-offLineMetaTask-table"></table>
+    </div>
+</div>
+
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Script Task Instances</h2>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="script-offLineMetaTaskInstance-search-id" class="layui-input search-input" type="text"
+                   placeholder="ID"/>
+            <input id="script-offLineMetaTaskInstance-search-name" class="layui-input search-input" type="text"
+                   placeholder="name"/>
+            <!--<input id="script-offLineMetaTaskInstance-search-taskExecutor" class="layui-input search-input" type="text"-->
+                   <!--placeholder="taskExecutor"/>-->
+            <select id="script-offLineMetaTaskInstance-search-taskExecutor">
+                <option value="" selected>Executor</option>
+                <% for(executor in executors) { %>
+                <option value="${executor}">${executor}</option>
+                <% } %>
+            </select>
+            <select id="script-offLineMetaTaskInstance-search-status">
+                <option value="" selected>Status</option>
+                <option value="FINISH">FINISH</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="READY">READY</option>
+                <option value="CANCELLING">CANCELLING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="WAITING">WAITING</option>
+            </select>
+            <select id="script-offLineMetaTaskInstance-search-result">
+                <option value="" selected>Result</option>
+                <option value="Time Out">Time Out</option>
+                <option value="Cancel&Time Out">Cancel&Time Out</option>
+                <option value="INIT">INIT</option>
+                <option value="CANCELED">CANCELED</option>
+                <option value="FAIL">FAIL</option>
+                <option value="LINING">LINING</option>
+                <option value="RUNNING">RUNNING</option>
+                <option value="SUCCESS">SUCCESS</option>
+            </select>
+            <!--<input id="script-offLineMetaTaskInstance-search-status" class="layui-input search-input" type="text"-->
+                   <!--placeholder="status"/>-->
+            <!--<input id="script-offLineMetaTaskInstance-search-result" class="layui-input search-input" type="text"-->
+                   <!--placeholder="result"/>-->
+            <input id="script-offLineMetaTaskInstance-search-batch" class="layui-input search-input" type="text"
+                   placeholder="batch"/>
+            <button id="script-offLineMetaTaskInstance-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search
+            </button>
+            <button id="script-offLineMetaTaskInstance-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show
+                all
+            </button>
+        </div>
+        <table id="script-offLineMetaTaskInstance-table" lay-filter="script-offLineMetaTaskInstance-table"></table>
+    </div>
+</div>
+
+<script type="text/html" id="script-offLineMetaTask-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">edit</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+<script type="text/html" id="script-offLineMetaTaskInstance-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="InstanceDetail">detail</a>
+</script>
+<script>
+    layui.use(['table', 'admin', 'util', 'form', 'layer'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var util = layui.util;
+        form.render("select");
+
+        //第一个实例
+        table.render({
+            elem: '#script-offLineMetaTask-table',
+            url: 'offLineMetaTask/script/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width:60,
+                        fixed: 'left'
+                    }, {
+                    field: 'name',
+                    title: 'name',
+                    width:250,
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    width:160,
+                    title: 'createTime'
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.lastModifyTime);
+                    },
+                    title: 'lastModifyTime',
+                    width:160,
+                    sort: true
+                },{
+                    field: 'inc',
+                    title: 'inc',
+                    sort: true
+                },{
+                    field: 'executor',
+                    title: 'executor',
+                    width:150,
+                    sort: true
+                },{
+                    field: 'desc',
+                    title: 'desc',
+                    width:200,
+                    sort: true
+                },{
+                    field: 'config',
+                    title: 'config',
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#script-offLineMetaTask-table-bar',
+                    title: 'operation',
+                    width: 180
+                }
+                ]
+            ]
+        });
+
+        table.render({
+            elem: '#script-offLineMetaTaskInstance-table',
+            url: 'offLineMetaTask/script/listInstance' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                    {
+                        field: 'id',
+                        title: 'ID',
+                        sort: true,
+                        width:100,
+                        fixed: 'left'
+                    }, {
+                    field: 'name',
+                    title: 'name',
+                    width:250,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.executeTime);
+                    },
+                    title: 'executeTime',
+                    width:160,
+                    sort: true
+                }, {
+                    field: 'status',
+                    title: 'status',
+                    width:120,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.startTime);
+                    },
+                    title: 'startTime',
+                    width:160,
+                    sort: true
+                },{
+                    templet: function (d) {
+                        return util.toDateString(d.endTime);
+                    },
+                    title: 'endTime',
+                    width:160,
+                    sort: true
+                },{
+                    field: 'result',
+                    title: 'result',
+                    width:100,
+                    sort: true
+                },{
+                    field: 'runningBatch',
+                    title: 'batch',
+                    width:100,
+                    sort: true
+                },{
+                    field: 'primaryValue',
+                    title: 'inc',
+                    sort: true
+                }, {
+                    field: 'executor',
+                    title: 'executor',
+                    width:150,
+                    sort: true
+                },{
+                    align: 'center',
+                    toolbar: '#script-offLineMetaTaskInstance-table-bar',
+                    title: 'detail',
+                    fixed: 'right',
+                    width: 100
+                }
+                ]
+            ]
+        });
+
+        table.on('tool(script-offLineMetaTaskInstance-table)', function (obj) {
+            var data = obj.data;
+            layer.open({
+                title: data.name
+                ,content: '<b>metrics:</b> '+data.metrics
+                +'<h3><b>errorMsg:</b> '+data.errorMsg
+                +'<h3><b>lastActionTime:</b> '+data.lastActionTime
+                +'<h3><b>desc:</b> '+data.desc
+                +'<h3><b>lastModifyTime:</b> '+data.lastModifyTime
+                +'<h3><b>createTime:</b> '+data.createTime
+                +'<h3><b>taskInstanceId:</b> '+data.taskInstanceId
+            });
+        });
+
+        // 工具条点击事件
+        table.on('tool(script-offLineMetaTask-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            } else if (layEvent === 'delete') { // 删除
+                layer.confirm('are you sure to delete this item？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('offLineMetaTask/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+        // 添加按钮点击事件
+        $('#script-offLineMetaTask-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#script-offLineMetaTask-btn-search').click(function () {
+            var id = $('#script-offLineMetaTask-search-id').val();
+            var name = $('#script-offLineMetaTask-search-name').val();
+            var executor = $('#script-offLineMetaTask-search-taskExecutor option:selected').val();
+            var config = $('#script-offLineMetaTask-search-config').val();
+            table.reload('script-offLineMetaTask-table', {
+                url: 'offLineMetaTask/script/queryList',
+                where: {
+                    id: id,
+                    name: name,
+                    executor: executor,
+                    config: config
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#script-offLineMetaTask-btn-show').click(function () {
+            table.reload('script-offLineMetaTask-table', {
+                url: 'offLineMetaTask/script/list'
+            });
+        });
+
+
+        $('#script-offLineMetaTaskInstance-btn-search').click(function () {
+            var id = $('#script-offLineMetaTaskInstance-search-id').val();
+            var name = $('#script-offLineMetaTaskInstance-search-name').val();
+            var executor = $('#script-offLineMetaTaskInstance-search-taskExecutor option:selected').val();
+            var status = $('#script-offLineMetaTaskInstance-search-status option:selected').val();
+            var batch = $('#script-offLineMetaTaskInstance-search-batch').val();
+            var result = $('#script-offLineMetaTaskInstance-search-result option:selected').val();
+            table.reload('script-offLineMetaTaskInstance-table', {
+                url: 'offLineMetaTask/script/queryListInstance',
+                where: {
+                    id: id,
+                    name: name,
+                    executor: executor,
+                    status: status,
+                    result: result,
+                    batch: batch
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#script-offLineMetaTaskInstance-btn-show').click(function () {
+            table.reload('script-offLineMetaTaskInstance-table', {
+                url: 'offLineMetaTask/script/listInstance'
+            });
+        });
+
+
+        // 显示表单弹窗
+        var showEditModel = function (data) {
+            var title = data ? 'edit' : 'add';
+            if (data) {
+                admin.popupCenter({
+                    title: title,
+                    area: "1000px",
+                    path: 'offLineMetaTask/script/editForm?id='+data.id,
+                    finish: function () {
+                       table.reload('script-offLineMetaTask-table', {});
+                    }
+                });
+            } else {
+                 admin.popupCenter({
+                    title: title,
+                    area: "1000px",
+                    path: 'offLineMetaTask/script/editForm',
+                    finish: function () {
+                        table.reload('script-offLineMetaTask-table', {});
+                    }
+                 });
+            }
+         };
+    });
+
+
+</script>

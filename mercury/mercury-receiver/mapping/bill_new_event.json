@@ -1,0 +1,66 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "eventType",
+    "type": "integer"
+  },
+  {
+    "name": "testing",
+    "type": "integer"
+  },
+  {
+    "name": "pid",
+    "type": "long"
+  },
+  {
+    "name": "iid",
+    "type": "long"
+  },
+  {
+    "name": "paymentId",
+    "type": "long"
+  },
+  {
+    "name": "country",
+    "type": "keyword"
+  },
+  {
+    "name": "iidStatus",
+    "type": "integer"
+  },
+  {
+    "name": "paymentStatus",
+    "type": "integer"
+  },
+  {
+    "name": "paymentDate",
+    "type": "keyword"
+  },
+  {
+    "name": "paymentAmount",
+    "type": "double"
+  },
+  {
+    "name": "paymentGateway",
+    "type": "keyword"
+  },
+  {
+    "name": "paymentType",
+    "type": "integer"
+  },
+  {
+    "name": "paymentMethod",
+    "type": "keyword"
+  },
+  {
+    "name": "client_ip",
+    "type": "keyword"
+  },
+  {
+    "name": "custom_ip",
+    "type": "keyword"
+  }
+]

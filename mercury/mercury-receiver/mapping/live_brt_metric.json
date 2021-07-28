@@ -1,0 +1,162 @@
+[
+  {
+    "name": "mac",
+    "type": "keyword"
+  },
+  {
+    "name": "authSuccessTimes",
+    "type": "long"
+  },
+  {
+    "name": "authFailureTimes",
+    "type": "long"
+  },
+  {
+    "name": "mediaCode",
+    "type": "keyword"
+  },
+  {
+    "name": "channelId",
+    "type": "keyword"
+  },
+  {
+    "name": "usedServers",
+    "type": "keyword"
+  },
+  {
+    "name": "lastServer",
+    "type": "keyword"
+  },
+  {
+    "name": "startTime",
+    "type": "long"
+  },
+  {
+    "name": "endTime",
+    "type": "long"
+  },
+  {
+    "name": "totalGrpCnt",
+    "type": "long"
+  },
+  {
+    "name": "totalResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "totalResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "totalResendRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "recvDur",
+    "type": "long"
+  },
+  {
+    "name": "dropCnt",
+    "type": "long"
+  },
+  {
+    "name": "timeoutDropCnt",
+    "type": "long"
+  },
+  {
+    "name": "timeoutDropRecvRatioMax",
+    "type": "long"
+  },
+  {
+    "name": "timeoutDropRecvRatioMin",
+    "type": "long"
+  },
+  {
+    "name": "timeoutDropRecvRatioAvg",
+    "type": "long"
+  },
+  {
+    "name": "overdueDropCnt",
+    "type": "long"
+  },
+  {
+    "name": "overdueDropRecvRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "overdueDropRecvRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "overdueDropRecvRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "overCacheDropCnt",
+    "type": "long"
+  },
+  {
+    "name": "overCacheDropRecvRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "overCacheDropRecvRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "overCacheDropRecvRatioAvg",
+    "type": "integer"
+  },
+  {
+    "name": "completeCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeByResendCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeNoResendCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeDurMax",
+    "type": "long"
+  },
+  {
+    "name": "completeDurMin",
+    "type": "long"
+  },
+  {
+    "name": "completeDurAvg",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketCnt",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketMax",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketMin",
+    "type": "long"
+  },
+  {
+    "name": "completeResendPacketAvg",
+    "type": "long"
+  },
+  {
+    "name": "completeResendRatioMax",
+    "type": "integer"
+  },
+  {
+    "name": "completeResendRatioMin",
+    "type": "integer"
+  },
+  {
+    "name": "completeResendRatioAvg",
+    "type": "integer"
+  }
+]

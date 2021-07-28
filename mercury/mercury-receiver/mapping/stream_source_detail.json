@@ -1,0 +1,22 @@
+[
+  {
+    "name": "server_id",
+    "type": "keyword"
+  },
+  {
+    "name": "stream_source",
+    "type": "keyword"
+  },
+  {
+    "name": "channelId",
+    "type": "keyword"
+  },
+  {
+    "name": "status",
+    "type": "boolean"
+  },
+  {
+    "name": "last30minErrorTime",
+    "type": "integer"
+  }
+]

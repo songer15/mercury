@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java'
+
+
+version '1.2.5'
+
+
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter')
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.1.RELEASE'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Elasticsearch
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '6.3.1'
+    implementation group: 'org.elasticsearch', name: 'elasticsearch', version: '6.3.1'
+    implementation group: 'org.elasticsearch.client', name: 'transport', version: '6.3.1'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.3'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.7'
+
+    //Tools
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'com.google.guava:guava:21.0'
+
+    //joda
+    implementation group: 'joda-time', name: 'joda-time', version: '2.9.9'
+
+}

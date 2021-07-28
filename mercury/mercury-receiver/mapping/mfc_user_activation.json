@@ -1,0 +1,58 @@
+[
+  {
+    "name": "actionTime",
+    "type": "date"
+  },
+  {
+    "name": "actionType",
+    "type": "keyword"
+  },
+  {
+    "name": "loginType",
+    "type": "keyword"
+  },
+  {
+    "name": "uid",
+    "type": "long"
+  },
+  {
+    "name": "did",
+    "type": "keyword"
+  },
+  {
+    "name": "clientIp",
+    "type": "keyword"
+  },
+  {
+    "name": "clientRegion",
+    "type": "keyword"
+  },
+  {
+    "name": "action",
+    "type": "keyword"
+  },
+  {
+    "name": "actionStatus",
+    "type": "keyword"
+  },
+  {
+    "name": "actionDetail",
+    "type": "keyword"
+  },
+  {
+    "name": "appVer",
+    "type": "long"
+  },
+  {
+    "name": "vendorName",
+    "type": "keyword"
+  },
+  {
+    "name": "ts",
+    "type": "long"
+  },
+  {
+    "name": "_preset_custom_ip",
+    "type": "keyword"
+  }
+]

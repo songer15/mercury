@@ -1,0 +1,160 @@
+<div class="layui-card">
+    <div class="layui-card-header">
+        <h2 class="header-title">Data Receive</h2>
+        <span class="layui-breadcrumb pull-right">
+          <a href="#!home_console">home page</a>
+          <a><cite>Data Receive</cite></a>
+        </span>
+    </div>
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <input id="etl-receive-search-name" class="layui-input search-input" type="text" placeholder="name"/>
+            <button id="etl-receive-btn-search" class="layui-btn icon-btn"><i class="layui-icon"></i>search</button>
+            <button id="etl-receive-btn-show" class="layui-btn icon-btn"><i class="layui-icon"></i>show all</button>
+            <button id="etl-receive-btn-add" class="layui-btn icon-btn"><i class="layui-icon"></i>add</button>
+        </div>
+        <table id="etl-receive-table" lay-filter="etl-receive-table"></table>
+    </div>
+</div>
+<script type="text/html" id="switchEnable">
+    <input type="checkbox" name="enable" value="{{d.enable}}" lay-skin="switch" lay-text="true|false"
+           lay-filter="enable" {{ d.enable== 'on' ? 'checked' : '' }} disabled>
+</script>
+<script type="text/html" id="etl-receive-table-bar">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">edit</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="delete">delete</a>
+</script>
+<script>
+    layui.use(['table', 'admin', 'util','form', 'layer'], function () {
+        var table = layui.table;
+        var admin = layui.admin;
+        var form = layui.form;
+        var layer = layui.layer;
+        var util = layui.util;
+
+        //第一个实例
+        table.render({
+            elem: '#etl-receive-table',
+            url: 'ETLTask/receive/list' //数据接口
+            ,
+            page: true //开启分页
+            ,
+            cols: [
+                [ //表头
+                {
+                    field: 'id',
+                    title: 'ID',
+                    width:80,
+                    sort: true
+                },{
+                    field: 'receiveName',
+                    title: 'receiveName',
+                    width:300,
+                    sort: true
+                },{
+                    field: 'receiveNum',
+                    title: 'receiveNum',
+                    sort: true
+                }, {
+                    field: 'forwardNum',
+                    title: 'forwardNum',
+                    sort: true
+                }, {
+                    templet: function (d) {
+                        return util.toDateString(d.createTime);
+                    },
+                    width:180,
+                    title: 'createTime'
+                }, {
+                    title: 'lastReportTime',
+                    templet: function (d) {
+                        return util.toDateString(d.lastReportTime);
+                    },
+                    sort: true
+                }, {
+                    field: 'enable',
+                    title: 'enable',
+                    templet: '#switchEnable',
+                    width:120,
+                    sort: true
+                }, {
+                    align: 'center',
+                    toolbar: '#etl-receive-table-bar',
+                    title: 'operation'
+                }
+                ]
+            ]
+        });
+
+        // 工具条点击事件
+        table.on('tool(etl-receive-table)', function (obj) {
+            var data = obj.data;
+            var layEvent = obj.event;
+
+            if (layEvent === 'edit') { // 修改
+                showEditModel(data);
+            }
+            else if (layEvent === 'delete') { // 删除
+                layer.confirm('are you sure to delete this item？', function (i) {
+                    layer.close(i);
+                    layer.load(2);
+                    $.post('ETLTask/receive/delete', {
+                        id: data.id
+                    }, function (data) {
+                        layer.closeAll('loading');
+                        if (data.code == 200) {
+                            layer.msg(data.msg, {
+                                icon: 1
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 2
+                            });
+                        }
+                        admin.refresh();
+                    });
+                });
+            }
+        });
+
+        // 添加按钮点击事件
+        $('#etl-receive-btn-add').click(function () {
+            showEditModel();
+        });
+
+        // 搜索按钮点击事件
+        $('#etl-receive-btn-search').click(function () {
+            var name = $('#etl-receive-search-name').val();
+            table.reload('etl-receive-table', {
+                url: 'ETLTask/receive/queryList',
+                where: {
+                    name: name
+                }, page: {
+                    curr: 1 //重新从第 1 页开始
+                }
+            });
+        });
+
+        // 展示全部按钮点击事件
+        $('#etl-receive-btn-show').click(function () {
+            table.reload('etl-receive-table', {
+                url: 'ETLTask/receive/list'
+            });
+        });
+
+        // 显示表单弹窗
+        var showEditModel = function (data) {
+            var title = data ? 'edit' : 'add';
+            admin.putTempData('t_etl-receive', data);
+            admin.popupCenter({
+                title: title,
+                area: "600px",
+                path: 'ETLTask/receive/editForm',
+                finish: function () {
+                    table.reload('etl-receive-table', {});
+                }
+            });
+        };
+    });
+
+</script>

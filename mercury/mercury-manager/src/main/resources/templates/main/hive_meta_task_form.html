@@ -1,0 +1,178 @@
+<div class='layui-fluid' style="height:730px;overflow:auto">
+    <div class="layui-row layui-col-space1">
+        <div class="layui-col-sm8">
+            <form id="hive-meta-task-form" lay-filter="hive-meta-task-form" class="layui-form model-form">
+                <input name="id" type="hidden"/>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">name</label>
+                    <div class="layui-input-block">
+                        <input name="name" placeholder="name" type="text" class="layui-input" lay-verify="required"
+                               required/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">executor</label>
+                    <div class="layui-input-block">
+                        <select name="executor" xm-select="executor" xm-select-radio="executor"
+                                lay-verify="required"
+                                required>
+                            <% for(executor in executors) { %>
+                            <option value="${executor}">${executor}</option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">description</label>
+                    <div class="layui-input-block">
+                        <textarea name="description" placeholder="" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">parameterMap</label>
+                    <div class="layui-input-block">
+                        <textarea id="parameterMap" name="parameterMap" placeholder="parameterMap"
+                                  class="layui-textarea"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">SQL</label>
+                    <div class="layui-input-block">
+                        <textarea name="sql" class="layui-textarea" style="height:300px;background-color:#000000;font-size:12px;color:#C2BE9E"></textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item model-form-footer">
+                    <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">cancel</button>
+                    <button class="layui-btn" lay-filter="hive-meta-task-form-submit" lay-submit>save</button>
+                </div>
+            </form>
+        </div>
+        <div class="layui-col-sm4">
+            <div class="layui-col-md12">
+                <button id="hive-meta-task-parameter-add" type="button" class="layui-btn">add parameter</button>
+                <button id="hive-meta-task-parameter-save" type="button" class="layui-btn">save</button>
+                <button id="hive-meta-task-parameter-clear" type="button" class="layui-btn">clear</button>
+            </div>
+            <div class="layui-col-md12">
+                <form id="hive-meta-task-form-parameter" class="layui-form model-form">
+                    <div class="layui-form-item" style="margin-top:-20px">
+                        <div class="layui-btn-group">
+                            <button type="button" class="layui-btn">parameterValue</button>
+                            <button type="button" class="layui-btn">format</button>
+                            <button type="button" class="layui-btn">namedStrategy</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="parameter_template">
+    <div class="layui-form-item" id="parameter_template_div">
+        <div class="layui-input-inline">
+            <input name="parameterName" placeholder="parameterName" type="text" class="layui-input"
+                   required/>
+        </div>
+        <div class="layui-input-inline">
+            <input name="parameterValue" placeholder="parameterValue" type="text" class="layui-input"
+                   required/>
+        </div>
+        <div class="layui-input-inline">
+            <select>
+                <option value="timestamp" selected>timestamp</option>
+                <option value="yyyyMMdd">yyyyMMdd</option>
+                <option value="yyyy-MM-dd">yyyy-MM-dd</option>
+                <option value="yyyy-MM-dd-HH">yyyy-MM-dd-HH</option>
+                <option value="yyyy-MM-dd HH:mm:ss">yyyy-MM-dd HH:mm:ss</option>
+                <option value="yyyy/MM/dd HH:mm:ss">yyyy/MM/dd HH:mm:ss</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <select name="namedStrategy" lay-verify="required" required>
+                <option value="Hour">Hour</option>
+                <option value="Day" selected>Day</option>
+                <option value="Week">Week</option>
+                <option value="Month">Month</option>
+                <option value="Quarter">Quarter</option>
+                <option value="Year">Year</option>
+            </select>
+        </div>
+    </div>
+</script>
+<script>
+    layui.use(['layer', 'admin', 'form','table'], function () {
+        var layer = layui.layer;
+        var admin = layui.admin;
+        var form = layui.form;
+
+        var url = 'offLineMetaTask/hive/add';
+        var data='${meta_task}';
+        if (data!='null') {
+            var meta_task = JSON.parse(data);
+            form.val('hive-meta-task-form', meta_task);
+            url = 'offLineMetaTask/hive/edit';
+            var pre = document.getElementsByTagName('pre');
+            pre.innerHTML=meta_task.sql;
+            console.log(meta_task.sql);
+        }
+        form.render();
+
+        // 表单提交事件
+        form.on('submit(hive-meta-task-form-submit)', function (data) {
+            layer.load(2);
+            $.post(url, data.field, function (data) {
+                layer.closeAll('loading');
+                if (data.code == 200) {
+                    layer.msg(data.msg, {icon: 1});
+                    admin.finishPopupCenter();
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+                admin.refresh();
+            });
+            return false;
+        });
+
+        $(document).ready(function(){
+            $("#hive-meta-task-parameter-add").click(function(){
+                var template=document.getElementById("parameter_template").innerHTML;
+                $("#hive-meta-task-form-parameter").append(template);
+                form.render();
+            });
+
+            $("#hive-meta-task-parameter-clear").click(function(){
+                var form = document.getElementById("hive-meta-task-form-parameter");
+                var child=document.getElementById("parameter_template_div");
+                form.removeChild(child);
+            });
+
+            $("#hive-meta-task-parameter-save").click(function(){
+               var form = document.getElementById("hive-meta-task-form-parameter");
+               var nameElements = new Array();
+               var elements = new Array();
+               var nameTagElements = form.getElementsByTagName('input');
+               var typeTagElements = form.getElementsByTagName('select');
+               for (var j = 0; j < nameTagElements.length/4;j++) {
+                   elements.push(nameTagElements[j*4].value);
+                   elements.push(nameTagElements[j*4+1].value);
+                   elements.push(typeTagElements[j*2].options[typeTagElements[j*2].selectedIndex].value);
+                   elements.push(typeTagElements[j*2+1].options[typeTagElements[j*2+1].selectedIndex].value);
+               }
+               var data=elements.join(",");
+               $.post('offLineMetaTask/hive/verifyParameter',{
+                        value: data
+                    }, function (data) {
+                    layer.closeAll('loading');
+                    if (data.code == 200) {
+                        console.log(data.msg);
+                        $('#parameterMap').val(data.msg);
+                    } else {
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                });
+            });
+        });
+    });
+
+
+</script>
